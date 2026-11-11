@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b5638">
+  <title>Home | Acad X</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="Landingpage-nav.css">
+
+  <style>
+    /* LOGOUT BUTTON */
+    .sidebar .logout-btn {
+      display: flex !important;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      width: calc(100% - 40px);
+      box-sizing: border-box;
+      margin: 20px 20px 20px;
+      padding: 13px 16px;
+      background: #fff0ef;
+      color: #c0392b !important;
+      text-decoration: none !important;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 10px;
+      flex-shrink: 0;
+      cursor: pointer;
+      position: relative;
+      z-index: 100;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    .sidebar .logout-btn:hover {
+      background: #ffe0dd;
+      color: #a93226 !important;
+    }
+
+    .sidebar .logout-btn .logout-icon {
+      font-size: 21px;
+      line-height: 1;
+    }
+
+    /* Keep logout accessible if sidebar content is tall */
+    .sidebar {
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+<svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-4-3-6-4-10-2 2-3 4-3 6-2-1-3-3-3-5-2 2-4 5-4 9a7 7 0 0 0 7 7Z"/><path d="M12 22a3 3 0 0 0 3-3c0-2-1-3-2-4-1 2-4 3-4 5a3 3 0 0 0 3 2Z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.7 8.7 0 0 1-4-.9L3 20l1.4-4.1A7.3 7.3 0 0 1 4 12a7.5 7.5 0 0 1 8-7.5 7.5 7.5 0 0 1 8 7Z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-3.7 3-6 7-6s7 2.3 7 6"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6.2M18 14c2.5.5 4 2.3 4 5"/></symbol>
+  <symbol id="i-badge" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m8 14-1 8 5-3 5 3-1-8M9.5 9l1.6 1.6L14.8 7"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 8.8c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11a4.8 4.8 0 0 1 8.8-2.4 4.8 4.8 0 0 1 8.8 2.4Z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></symbol>
+  <symbol id="i-poll" viewBox="0 0 24 24"><path d="M4 19V5M4 19h17"/><path d="M8 16v-5M13 16V7M18 16v-8"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.5 2.5 0 1 1 4.4 1.6c-1.1 1-2 1.4-2 3M12 17h.01"/></symbol>
+  <symbol id="i-comment" viewBox="0 0 24 24"><path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.7 8.7 0 0 1-4-.9L3 20l1.4-4.1A7.3 7.3 0 0 1 4 12a7.5 7.5 0 0 1 8-7.5 7.5 7.5 0 0 1 8 7Z"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5"/><path d="M5 13v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="m4 16.5-.8 4.3 4.3-.8L20 7.5 16.5 4z"/><path d="m14.8 5.7 3.5 3.5"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+</svg>
+
+<div class="app">
+
+  <aside class="sidebar">
+
+    <a href="3.html" class="side-logo" aria-label="Acad X home">
+      <img src="images/Awaiting image descriptions.png" alt="Acad X">
+    </a>
+
+    <div class="sidebar-label">YOUR SPACE</div>
+
+    <nav class="side-nav" aria-label="Main navigation">
+      <a href="index.html" class="active" aria-current="page"><span>Home</span></a>
+      <a href="explore (2).html"><svg class="ic"><use href="#i-flame"/></svg><span>Explore</span></a>
+      <a href="forum-section2.html"><svg class="ic"><use href="#i-chat"/></svg><span>Forums</span></a>
+      <a href="acadx-my-posts-redesign.html"><svg class="ic"><use href="#i-doc"/></svg><span>My Posts</span></a>
+      <a href="notification2.html"><svg class="ic"><use href="#i-bell"/></svg><span>Notifications</span><span class="nav-dot"></span></a>
+      <a href="#"><svg class="ic"><use href="#i-users"/></svg><span>Friends</span></a>
+      <a href="badges-redesigned.html"><svg class="ic"><use href="#i-badge"/></svg><span>Badges</span></a>
+    </nav>
+
+    <div class="sidebar-note">
+      <span class="note-spark">✳</span>
+      <strong>Good ideas grow here.</strong>
+      <p>Share what you know. Learn something new.</p>
+    </div>
+
+    <img class="side-campus" src="assets/campus.jpg" alt="" loading="lazy">
+
+    <!-- LOG OUT BUTTON -->
+    <a href="fileLandingpage241.html" class="logout-btn" onclick="logoutUser(event)">
+      <span class="logout-icon">↪</span>
+      <span>Log Out</span>
+    </a>
+
+  </aside>
+
+  <div class="main">
+
+    <header class="topbar">
+      <div class="topbar-greeting">
+        <span class="eyebrow">YOUR COMMUNITY, YOUR WAY</span>
+        <strong>Hey, Saitama <span aria-hidden="true">✦</span></strong>
+      </div>
+
+      <label class="search">
+        <svg class="ic"><use href="#i-search"/></svg>
+        <input type="search" placeholder="Search posts, topics, people..." aria-label="Search the forum">
+        <kbd>/</kbd>
+      </label>
+
+      <div class="top-actions">
+        <a href="notification.html" class="bell" aria-label="Notifications"><svg class="ic"><use href="#i-bell"/></svg><i></i></a>
+        <a href="#" class="user-chip">
+          <span class="avatar av-purple">S</span>
+          <span class="user-text"><strong>Saitama</strong><small>Grade 9</small></span>
+          <svg class="ic chevron"><use href="#i-chevron"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <main class="feed" id="feed">
+
+        <section class="welcome">
+          <div class="welcome-text">
+            <span class="welcome-kicker"><span></span> THE STUDENT COMMUNITY</span>
+            <h1>Welcome to<br>Acad<span>X</span>!</h1>
+            <p>Your space to share ideas, ask questions, find your people, and learn together.</p>
+            <a class="welcome-link" href="explore (1).html">Find your next conversation <svg class="ic"><use href="#i-chevron"/></svg></a>
+          </div>
+
+          <div class="welcome-art">
+            <span class="art-orbit orbit-one"></span>
+            <span class="art-orbit orbit-two"></span>
+            <img src="images/sfa.png" alt="Students working together at a computer">
+            <span class="art-sticker">IDEAS<br>START HERE</span>
+          </div>
+        </section>
+
+        <div class="feed-heading">
+          <div>
+            <span class="eyebrow">THE LATEST FROM YOUR COMMUNITY</span>
+            <h2>Community feed</h2>
+          </div>
+          <span class="online-pill"><i></i> Your space is active</span>
+        </div>
+
+        <nav class="tabs" aria-label="Feed filters">
+          <a href="#" class="tab active" data-filter="foryou">For You <span aria-hidden="true">✦</span></a>
+          <a href="#" class="tab" data-filter="latest">Latest</a>
+          <a href="#" class="tab" data-filter="popular">Popular <span aria-hidden="true">↗</span></a>
+          <a href="#" class="tab" data-filter="qa">Q&amp;A</a>
+          <a href="#" class="tab" data-filter="tech">About Tech</a>
+        </nav>
+
+        <section class="composer" aria-label="Create a post">
+          <div class="composer-label"><span class="composer-pulse"></span> START A CONVERSATION</div>
+          <div class="composer-top">
+            <span class="avatar av-purple">S</span>
+            <input type="text" id="composerInput" placeholder="What's on your mind, Saitama?" aria-label="Write a post">
+          </div>
+          <div class="composer-bottom">
+            <div class="composer-tools">
+              <a href="#" aria-label="Add a photo"><svg class="ic"><use href="#i-image"/></svg><span>Photo</span></a>
+              <a href="#" aria-label="Create a poll"><svg class="ic"><use href="#i-poll"/></svg><span>Poll</span></a>
+              <a href="#" aria-label="Ask a question"><svg class="ic"><use href="#i-help"/></svg><span>Question</span></a>
+            </div>
+            <button type="button" class="post-btn" id="postBtn"><svg class="ic"><use href="#i-send"/></svg>Post</button>
+          </div>
+        </section>
+
+        <article class="post" data-type="qa" data-topic="tech" data-time="3600000">
+          <header class="post-head">
+            <span class="avatar av-brown">G</span>
+            <div class="post-who">
+              <strong>Genos D.</strong>
+              <span class="grade">Grade 9</span>
+              <span class="time">1h ago</span>
+            </div>
+            <button class="more-btn" type="button" aria-label="More post options">•••</button>
+          </header>
+          <div class="post-content">
+            <span class="post-category">QUESTION <span>·</span> TECH &amp; CODING</span>
+            <h2>Tips for learning C++</h2>
+            <p>Hi! I really don't know where I should begin learning the C++ programming language. I really want to master it for this semester. Any tips, resources, or beginner projects you’d recommend?</p>
+          </div>
+          <div class="post-tags">
+            <a href="#" class="chip">#Acads</a>
+            <a href="#" class="chip">#CodingJourney</a>
+          </div>
+          <footer class="post-foot">
+            <button type="button" class="like" aria-label="Like, 100 likes"><svg class="ic"><use href="#i-heart"/></svg><span class="count">100</span><span class="action-word">Likes</span></button>
+            <button type="button" class="share"><svg class="ic"><use href="#i-comment"/></svg><span>Comment</span><span class="count">12</span></button>
+            <button type="button" class="share"><svg class="ic"><use href="#i-share"/></svg><span>Share</span></button>
+          </footer>
+        </article>
+
+      </main>
+
+      <aside class="rail">
+
+        <section class="profile-card">
+          <div class="profile-topline">
+            <span>YOUR PROFILE</span>
+            <a href="#" class="edit" aria-label="Edit profile"><svg class="ic"><use href="#i-edit"/></svg></a>
+          </div>
+          <div class="profile-row">
+            <span class="avatar av-purple big">S</span>
+            <div><strong>Saitama</strong><span class="grade">Grade 9</span></div>
+          </div>
+          <p class="profile-tags"><span>✦</span> Kalbo <b>·</b> Hero <b>·</b> Japan</p>
+          <div class="profile-progress">
+            <div><span>Community starter</span><strong>2 / 5 badges</strong></div>
+            <span class="progress-track"><i></i></span>
+          </div>
+        </section>
+
+        <section class="highlights">
+          <div class="section-title">
+            <div><span class="eyebrow">JUMP INTO A TOPIC</span><h2>Forum highlights</h2></div>
+            <span class="highlight-mark">✳</span>
+          </div>
+          <ul>
+            <li><a href="#"><span class="topic-icon icon-tech"></span><span><strong>Software / Hardware</strong><small>Tech talk &amp; discoveries</small></span><svg class="ic"><use href="#i-chevron"/></svg></a></li>
+            <li><a href="#"><span class="topic-icon icon-games"></span><span><strong>Quiz / Games Sched</strong><small>Play, practice, compete</small></span><svg class="ic"><use href="#i-chevron"/></svg></a></li>
+            <li><a href="#"><span class="topic-icon icon-tips"></span><span><strong>Acad Tips</strong><small>Study smarter together</small></span><svg class="ic"><use href="#i-chevron"/></svg></a></li>
+          </ul>
+          <a class="all-forums" href="forum-section.html">Explore all forums <svg class="ic"><use href="#i-chevron"/></svg></a>
+        </section>
+
+        <section class="rail-note">
+          <span class="rail-note-icon">✦</span>
+          <div><strong>Small steps count.</strong><p>Every question is a chance to learn something new.</p></div>
+        </section>
+
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script src="Javascript-AcadX/dashboard.js"></script>
+
+<script>
+  function logoutUser(event) {
+    event.preventDefault();
+
+    sessionStorage.clear();
+    localStorage.removeItem("loggedInUser");
+
+    window.location.replace("fileLandingpage241.html");
+  }
+</script>
+
+</body>
+</html>

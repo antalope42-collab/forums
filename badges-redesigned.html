@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AcadX — Badges</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  
+<div class="ax-app">
+  <aside class="ax-sidebar" id="sidebar" aria-label="Main navigation">
+    <a class="ax-logo" href="forum.html">Acad<span>X</span></a>
+    <div class="ax-nav-label">Your space</div>
+    <nav class="ax-nav">
+      <a href="index.html"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></svg>Home</a>
+      <a href="explore (2).html"><svg viewBox="0 0 24 24"><path d="M12 3c1 3 5 5 5 10a5 5 0 01-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z"/></svg>Explore</a>
+      <a href="forum-section2.html"><svg viewBox="0 0 24 24"><path d="M4 5h12a2 2 0 012 2v6a2 2 0 01-2 2H9l-4 3v-3H4a2 2 0 01-2-2V7a2 2 0 012-2zM20 9h1a1 1 0 011 1v7l-3-2h-6"/></svg>Forums</a>
+      <a href="acadx-my-posts-redesign.html"><svg viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6zM14 3v5h5M9 13h7M9 17h7"/></svg>My Posts</a>
+      <a href="notification2.html"><svg viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0112 0v6l2 2H4zM10 21a2 2 0 004 0"/></svg>Notifications</a>
+      <a href="friends.html"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6M16 4.5a3.5 3.5 0 010 7M18 14c2.5.6 4 2.4 4 6"/></svg>Friends</a>
+      <a href="badges-redesigned.html" class="active" aria-current="page"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="6"/><path d="M12 7l1 2 2 .3-1.5 1.5.4 2.2-1.9-1-1.9 1 .4-2.2L9 9.3l2-.3zM8 15l-2 6 4-2 2 2M16 15l2 6-4-2"/></svg>Badges</a>
+    </nav>
+    <div class="ax-sidebar-note">
+      <div class="ax-note-icon">✦</div>
+      <strong>Good ideas grow here.</strong>
+      <p>Share what you know. Learn something new.</p>
+    </div>
+  </aside>
+  <div class="ax-scrim" id="scrim"></div>
+
+  <main class="ax-main">
+    <header class="ax-topbar">
+      <button class="ax-menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <label class="ax-search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input type="search" placeholder="Search Here..." aria-label="Search">
+      </label>
+      <div class="ax-user">
+        <button class="ax-notice" aria-label="Notifications" onclick="location.href='notification.html'">
+          <svg viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0112 0v6l2 2H4zM10 21a2 2 0 004 0"/></svg>
+        </button>
+        <span class="ax-user-divider"></span>
+        <button class="ax-profile">
+          <span class="ax-avatar">S</span>
+          <span class="ax-profile-copy"><b>Saitama</b><small>Grade 9</small></span>
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 9 7 7 7-7"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="ax-hero">
+      <div class="ax-hero-content">
+        <p class="ax-eyebrow">Your achievements, your journey</p>
+        <h1>Badges</h1>
+        <p>Earn badges. Show your progress!</p>
+      </div>
+      <div class="ax-hero-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><circle cx="32" cy="24" r="15"/><path d="m23 37-4 20 13-7 13 7-4-20M32 15l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+      </div>
+    </section>
+
+    <section class="ax-content">
+      <div class="ax-section-heading">
+        <div>
+          <h2>Your badge collection</h2>
+          <p>Every badge tells a story of what you've achieved.</p>
+        </div>
+        <div class="ax-progress">
+          <span>2 of 5 badges</span>
+          <span class="ax-progress-track"><span></span></span>
+        </div>
+      </div>
+
+      <div class="ax-tabs" role="group" aria-label="Badge views">
+        <button class="ax-tab" data-view="mine" aria-pressed="true">My Badges</button>
+        <button class="ax-tab" data-view="all" aria-pressed="false">All Badges</button>
+        <button class="ax-tab" data-view="how" aria-pressed="false">How to Earn</button>
+      </div>
+
+      <div class="ax-badges" id="badgeGrid">
+        <article class="ax-badge-card featured" data-earned="true">
+          <div class="ax-badge-image"> <img src="images/Polished Green and Gold Achievement Badges 1.png" alt=""></div>
+          <h3>Top Contributor</h3>
+          <p>Earned: Apr 23, 2025</p>
+          <span class="ax-badge-status">Earned</span>
+        </article>
+        <article class="ax-badge-card" data-earned="true">
+          <div class="ax-badge-image"> <img src="images/Polished Green and Gold Achievement Badges 2.png" alt=""></div>
+          <h3>Study Star</h3>
+          <p>Earned: Apr 20, 2025</p>
+          <span class="ax-badge-status">Earned</span>
+        </article>
+        <article class="ax-badge-card" data-earned="false">
+          <div class="ax-badge-image"> <img src="images/Polished Green and Gold Achievement Badges 3.png" alt=""></div>
+          <h3>Forum Helper</h3>
+          <p>Help classmates in discussions</p>
+          <span class="ax-badge-status">Not earned yet</span>
+        </article>
+        <article class="ax-badge-card locked" data-earned="false">
+          <div class="ax-badge-image"> <img src="images/Polished Green and Gold Achievement Badges 4.png" alt=""></div>
+          <h3>Tech Explorer</h3>
+          <p>Explore and share tech topics</p>
+          <span class="ax-badge-status">Not earned yet</span>
+        </article>
+        <article class="ax-badge-card locked" data-earned="false">
+          <div class="ax-badge-image"> <img src="images/Polished Green and Gold Achievement Badges 5.png" alt=""></div>
+          <h3>Community Star</h3>
+          <p>Be an active community member</p>
+          <span class="ax-badge-status">Not earned yet</span>
+        </article>
+      </div>
+
+      <div class="ax-howto" id="howToPanel">
+        <article class="ax-how-card"><div class="ax-how-number">01</div><h3>Join the conversation</h3><p>Share helpful ideas, ask thoughtful questions, and contribute to forum discussions.</p></article>
+        <article class="ax-how-card"><div class="ax-how-number">02</div><h3>Learn and explore</h3><p>Take part in learning activities and explore topics that interest you.</p></article>
+        <article class="ax-how-card"><div class="ax-how-number">03</div><h3>Support your community</h3><p>Help classmates, share useful resources, and keep the AcadX community welcoming.</p></article>
+      </div>
+    </section>
+  </main>
+</div>
+
+<style>
+:root {
+  --green: #0f5c38;
+  --green-dark: #08472c;
+  --green-deep: #063d27;
+  --emerald: #168653;
+  --yellow: #ffcc32;
+  --ink: #14251d;
+  --muted: #718078;
+  --line: #e5ece7;
+  --surface: #ffffff;
+  --page: #f5f8f5;
+  --cream: #fff8df;
+  --sidebar-width: 252px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: "Poppins", sans-serif; color: var(--ink); background: var(--page); }
+button, input { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; }
+.ax-app { min-height: 100vh; display: grid; grid-template-columns: var(--sidebar-width) minmax(0,1fr); }
+
+/* Sidebar */
+.ax-sidebar {
+  background: linear-gradient(180deg, #116842 0%, var(--green-dark) 100%);
+  color: #fff; min-height: 100vh; height: 100vh; position: sticky; top: 0;
+  display: flex; flex-direction: column; padding: 20px 14px 16px; z-index: 30;
+}
+.ax-logo { padding: 0 8px 34px; font-size: 2.25rem; line-height: 1; font-weight: 800; font-style: italic; letter-spacing: -1.8px; }
+.ax-logo span { color: var(--yellow); }
+.ax-nav-label { color: rgba(255,255,255,.58); text-transform: uppercase; letter-spacing: 1.4px; font-size: .65rem; font-weight: 700; padding: 0 14px 10px; }
+.ax-nav { display: flex; flex-direction: column; gap: 7px; }
+.ax-nav a { display: flex; align-items: center; gap: 14px; min-height: 46px; padding: 0 14px; border-radius: 14px; color: rgba(255,255,255,.92); font-size: .9rem; font-weight: 600; transition: background .2s, color .2s, transform .2s; }
+.ax-nav a:hover { background: rgba(255,255,255,.12); transform: translateX(2px); }
+.ax-nav a.active { background: var(--yellow); color: #173624; box-shadow: 0 5px 14px rgba(0,0,0,.12); }
+.ax-nav svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.ax-sidebar-note { margin-top: auto; padding: 17px 16px; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); border-radius: 17px; }
+.ax-note-icon { width: 30px; height: 30px; border-radius: 10px; background: var(--yellow); color: var(--green-dark); display: grid; place-items: center; margin-bottom: 10px; font-size: 1rem; }
+.ax-sidebar-note strong { display: block; font-size: .82rem; margin-bottom: 5px; }
+.ax-sidebar-note p { margin: 0; color: rgba(255,255,255,.75); font-size: .7rem; line-height: 1.6; }
+
+/* Main / topbar */
+.ax-main { min-width: 0; }
+.ax-topbar { height: 68px; background: rgba(255,255,255,.94); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 20px; padding: 0 clamp(20px,3vw,42px); position: sticky; top: 0; z-index: 15; backdrop-filter: blur(12px); }
+.ax-menu-btn { display: none; border: 0; background: transparent; color: var(--green); padding: 6px; }
+.ax-menu-btn svg { width: 24px; height: 24px; }
+.ax-search { width: min(100%, 680px); margin: 0 auto; display: flex; align-items: center; gap: 11px; padding: 11px 16px; border-radius: 12px; background: #f2f5f2; border: 1px solid #edf1ed; color: #87938c; }
+.ax-search svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.ax-search input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: .8rem; }
+.ax-search input::placeholder { color: #89958e; }
+.ax-user { display: flex; align-items: center; gap: 14px; margin-left: auto; flex: none; }
+.ax-notice { position: relative; border: 0; background: transparent; color: var(--ink); padding: 5px; }
+.ax-notice svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.ax-notice::after { content: ""; position: absolute; width: 6px; height: 6px; background: var(--yellow); border: 2px solid white; border-radius: 50%; top: 3px; right: 2px; }
+.ax-user-divider { width: 1px; height: 27px; background: #dce4de; }
+.ax-profile { display: flex; align-items: center; gap: 10px; border: 0; background: transparent; color: var(--ink); padding: 0; text-align: left; }
+.ax-avatar { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: #ddd; color: #fff; font-weight: 700; overflow: hidden; }
+.ax-profile b { display: block; font-size: .78rem; font-weight: 600; line-height: 1.3; }
+.ax-profile small { display: block; color: var(--muted); font-size: .67rem; }
+
+/* Hero */
+.ax-hero { min-height: 188px; position: relative; overflow: hidden; display: flex; align-items: center; padding: 34px clamp(24px,5vw,68px); background: linear-gradient(105deg,#fff 0%,#f0f8f1 54%,#d5eddd 100%); border-bottom: 1px solid #e4eee6; }
+.ax-hero::before, .ax-hero::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
+.ax-hero::before { width: 290px; height: 290px; right: 8%; top: -190px; border: 34px solid rgba(22,134,83,.06); }
+.ax-hero::after { width: 170px; height: 170px; right: 2%; bottom: -125px; background: rgba(255,204,50,.18); }
+.ax-hero-content { position: relative; z-index: 1; }
+.ax-eyebrow { margin: 0 0 7px; color: #789087; font-size: .65rem; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; }
+.ax-hero h1 { margin: 0; color: var(--green); font-size: clamp(2rem,4vw,3rem); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; }
+.ax-hero p { margin: 7px 0 0; color: #286648; font-size: clamp(.9rem,1.5vw,1.15rem); font-weight: 600; }
+.ax-hero-mark { position: absolute; right: clamp(30px,8vw,115px); top: 50%; transform: translateY(-50%); width: 118px; height: 118px; border-radius: 30px; background: rgba(255,255,255,.56); border: 1px solid rgba(255,255,255,.9); display: grid; place-items: center; color: rgba(15,92,56,.28); rotate: 8deg; }
+.ax-hero-mark svg { width: 62px; height: 62px; stroke: currentColor; fill: none; stroke-width: 1.4; }
+
+/* Page content */
+.ax-content { padding: 28px clamp(18px,3vw,42px) 48px; max-width: 1600px; margin: 0 auto; }
+.ax-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 19px; }
+.ax-section-heading h2 { margin: 0; font-size: 1.25rem; letter-spacing: -.4px; font-weight: 700; }
+.ax-section-heading p { margin: 4px 0 0; color: var(--muted); font-size: .78rem; }
+.ax-progress { display: flex; align-items: center; gap: 10px; color: var(--green); font-size: .75rem; font-weight: 600; white-space: nowrap; }
+.ax-progress-track { width: 112px; height: 7px; background: #e5eee7; border-radius: 99px; overflow: hidden; }
+.ax-progress-track span { display: block; width: 40%; height: 100%; background: var(--yellow); border-radius: inherit; }
+
+/* Tabs */
+.ax-tabs { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 23px; }
+.ax-tab { border: 1px solid #e1e8e2; background: #fff; color: #34483c; border-radius: 999px; padding: 10px 20px; font-size: .78rem; font-weight: 600; box-shadow: 0 2px 6px rgba(20,50,30,.05); transition: .2s ease; }
+.ax-tab:hover { border-color: #9bc9aa; background: #f6fbf7; }
+.ax-tab[aria-pressed="true"] { color: #fff; background: var(--green); border-color: var(--green); box-shadow: 0 4px 10px rgba(15,92,56,.15); }
+
+/* Badge cards */
+.ax-badges { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 17px; }
+.ax-badge-card { min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 22px 12px 19px; background: var(--surface); border: 1px solid #e3e9e4; border-radius: 18px; box-shadow: 0 3px 10px rgba(20,45,30,.07); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.ax-badge-card:hover { transform: translateY(-4px); border-color: #c9dfce; box-shadow: 0 9px 22px rgba(20,45,30,.11); }
+.ax-badge-card.featured { background: #fffbed; border-color: #f2df9b; }
+.ax-badge-image { width: 104px; height: 104px; border-radius: 50%; background: #f7edc9; border: 7px solid #fcf6df; margin-bottom: 14px; overflow: hidden; display: grid; place-items: center; }
+.ax-badge-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.ax-badge-card h3 { margin: 0; font-size: .91rem; line-height: 1.4; font-weight: 700; color: #14251d; }
+.ax-badge-card p { margin: 7px 0 0; color: #748078; font-size: .72rem; }
+.ax-badge-status { margin-top: 11px; padding: 4px 10px; border-radius: 99px; color: #176440; background: #eaf5ed; font-size: .62rem; font-weight: 700; }
+.ax-badge-card.locked .ax-badge-image { background: #edf0ed; border-color: #f5f7f5; }
+.ax-badge-card.locked h3 { color: #68756d; }
+.ax-badge-card.locked .ax-badge-status { background: #f0f2f0; color: #7b8780; }
+
+/* How-to panel */
+.ax-howto { display: none; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.ax-howto.show { display: grid; }
+.ax-how-card { padding: 20px; background: #fff; border: 1px solid var(--line); border-radius: 16px; }
+.ax-how-number { width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; background: #fff3c4; color: #795d00; font-size: .8rem; font-weight: 700; margin-bottom: 12px; }
+.ax-how-card h3 { margin: 0 0 6px; font-size: .9rem; }
+.ax-how-card p { margin: 0; color: var(--muted); font-size: .75rem; line-height: 1.65; }
+.ax-empty-note { color: var(--muted); font-size: .75rem; margin: 15px 0 0; }
+
+/* Mobile */
+.ax-scrim { display: none; }
+@media (max-width: 1200px) {
+  .ax-badges { grid-template-columns: repeat(3,minmax(0,1fr)); }
+}
+@media (max-width: 900px) {
+  .ax-app { display: block; }
+  .ax-sidebar { position: fixed; left: 0; top: 0; width: min(280px,85vw); transform: translateX(-105%); transition: transform .25s ease; box-shadow: 12px 0 35px rgba(0,0,0,.18); }
+  .ax-sidebar.open { transform: translateX(0); }
+  .ax-scrim.show { display: block; position: fixed; inset: 0; z-index: 25; background: rgba(8,30,18,.45); }
+  .ax-menu-btn { display: block; }
+  .ax-search { margin: 0; }
+}
+@media (max-width: 620px) {
+  .ax-topbar { height: auto; min-height: 64px; padding: 11px 14px; gap: 10px; flex-wrap: wrap; }
+  .ax-search { order: 3; flex-basis: 100%; max-width: none; }
+  .ax-user { gap: 9px; }
+  .ax-user-divider, .ax-profile-copy { display: none; }
+  .ax-hero { min-height: 150px; padding: 25px 20px; }
+  .ax-hero-mark { width: 75px; height: 75px; right: 18px; opacity: .65; }
+  .ax-hero-mark svg { width: 42px; height: 42px; }
+  .ax-content { padding: 22px 14px 36px; }
+  .ax-section-heading { align-items: flex-start; flex-direction: column; }
+  .ax-badges { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 11px; }
+  .ax-badge-card { padding: 17px 8px 15px; border-radius: 15px; }
+  .ax-badge-image { width: 82px; height: 82px; margin-bottom: 10px; border-width: 5px; }
+  .ax-badge-card h3 { font-size: .78rem; }
+  .ax-badge-card p { font-size: .64rem; }
+  .ax-howto { grid-template-columns: 1fr; }
+  .ax-progress-track { width: 85px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
+</style>
+
+<script>
+const sidebar = document.getElementById('sidebar');
+const scrim = document.getElementById('scrim');
+const menuBtn = document.getElementById('menuBtn');
+
+function setMenu(open) {
+  sidebar.classList.toggle('open', open);
+  scrim.classList.toggle('show', open);
+  menuBtn.setAttribute('aria-expanded', String(open));
+}
+menuBtn.addEventListener('click', () => setMenu(!sidebar.classList.contains('open')));
+scrim.addEventListener('click', () => setMenu(false));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') setMenu(false);
+});
+
+const tabs = document.querySelectorAll('.ax-tab');
+const grid = document.getElementById('badgeGrid');
+const howTo = document.getElementById('howToPanel');
+const cards = [...document.querySelectorAll('.ax-badge-card')];
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(item => item.setAttribute('aria-pressed', String(item === tab)));
+    const view = tab.dataset.view;
+    grid.style.display = view === 'how' ? 'none' : 'grid';
+    howTo.classList.toggle('show', view === 'how');
+    cards.forEach(card => {
+      card.style.display = view === 'mine' && card.dataset.earned !== 'true' ? 'none' : 'flex';
+    });
+  });
+});
+</script>
+</body>
+</html>

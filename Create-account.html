@@ -1,0 +1,229 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#064c32">
+    <title>AcadX | Create Account</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="Create-account.css">
+</head>
+<body>
+
+    <!-- Background decorations -->
+    <div class="deco deco-top" aria-hidden="true"></div>
+    <div class="deco deco-bottom" aria-hidden="true"></div>
+
+    <main class="page">
+        <section class="form-side">
+            <div class="form-card">
+
+                <header class="form-header">
+                    <div class="brand">Acad<span>X</span></div>
+                    <h1>Create Account</h1>
+                    <p class="subtitle">
+                        Join AcadX and be part of a growing community of ICT students!
+                    </p>
+                </header>
+
+                <form action="Dashboard-home.html" method="get" novalidate id="signup-form">
+
+                    <!-- Full name -->
+                    <div class="field">
+                        <label class="sr-only" for="fullname">Full name</label>
+                        <div class="input-box">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.2-8 5v1c0 .6.4 1 1 1h14c.6 0 1-.4 1-1v-1c0-2.8-3.6-5-8-5Z"/>
+                            </svg>
+                            <input type="text" id="fullname" name="fullname"
+                                   placeholder="Full name"
+                                   autocomplete="name" required>
+                        </div>
+                        <p class="error-msg" role="alert">Please enter your full name.</p>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="field">
+                        <label class="sr-only" for="email">Email address</label>
+                        <div class="input-box">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm.4 2L12 12.2 19.6 7H4.4ZM20 9.2l-7.4 5.1a1.1 1.1 0 0 1-1.2 0L4 9.2V17h16V9.2Z"/>
+                            </svg>
+                            <input type="email" id="email" name="email"
+                                   placeholder="Email address"
+                                   autocomplete="email" required>
+                        </div>
+                        <p class="error-msg" role="alert">Please enter a valid email address.</p>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="field">
+                        <label class="sr-only" for="password">Password</label>
+                        <div class="input-box">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M17 9h-1V7a4 4 0 0 0-8 0v2H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2Zm-7-2a2 2 0 0 1 4 0v2h-4V7Zm3 9.7V18h-2v-1.3a2 2 0 1 1 2 0Z"/>
+                            </svg>
+
+                            <input type="password" id="password" name="password"
+                                   placeholder="Password"
+                                   autocomplete="new-password"
+                                   minlength="8" required>
+
+                            <button type="button" class="toggle-password"
+                                    aria-label="Show password" aria-pressed="false">
+                                <svg class="eye-open" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M12 5c5 0 9 4.5 10 7-1 2.5-5 7-10 7S3 14.5 2 12c1-2.5 5-7 10-7Zm0 2.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Zm0 2a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z"/>
+                                </svg>
+                                <svg class="eye-closed" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M3.3 2 2 3.3l3.1 3.1C3.5 7.7 2.4 9.7 2 12c1 2.5 5 7 10 7 1.7 0 3.3-.5 4.7-1.3l3 3L21 19.4 3.3 2ZM12 7c4.2 0 7.8 3.2 9 5-.4.7-1.1 1.6-2 2.4l-2.5-2.5A4.5 4.5 0 0 0 9.1 8.5L7.4 6.8A9.5 9.5 0 0 1 12 7Z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <p class="hint">Use at least 8 characters.</p>
+                        <p class="error-msg" role="alert">Password must be at least 8 characters.</p>
+                    </div>
+
+                    <!-- Grade level -->
+                    <div class="field">
+                        <label class="sr-only" for="grade">Grade level</label>
+                        <div class="input-box select-box">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3Zm-6 9.2V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-3.8l-6 3.3-6-3.3Z"/>
+                            </svg>
+
+                            <select id="grade" name="grade" required>
+                                <option value="" disabled selected>Grade level</option>
+                                <option value="7">Grade 7</option>
+                                <option value="8">Grade 8</option>
+                                <option value="9">Grade 9</option>
+                                <option value="10">Grade 10</option>
+                                <option value="11">Grade 11</option>
+                                <option value="12">Grade 12</option>
+                                <option value="college">College</option>
+                            </select>
+
+                            <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor"
+                                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <p class="error-msg" role="alert">Please select your grade level.</p>
+                    </div>
+
+                    <!-- Terms -->
+                    <div class="field terms-field">
+                        <label class="terms">
+                            <input type="checkbox" name="terms" id="terms" required>
+                            <span>
+                                I agree to the
+                                <a href="terms.html">Terms and Conditions</a> and
+                                <a href="privacy.html">Privacy Policy</a>.
+                            </span>
+                        </label>
+                        <p class="error-msg" role="alert">You need to agree before creating an account.</p>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Create Account
+                    </button>
+
+                    <div class="divider"><span>or</span></div>
+
+                    <button type="button" class="btn btn-google" id="google-signup">
+                        <svg viewBox="0 0 48 48" aria-hidden="true" class="google-icon">
+                            <path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5Z"/>
+                            <path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17.5Z"/>
+                            <path fill="#FBBC05" d="M10.5 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7l-7.9-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.9-6.1Z"/>
+                            <path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.8 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48Z"/>
+                        </svg>
+                        Sign up with Google
+                    </button>
+
+                    <p class="switch-page">
+                        Already have an account?
+                        <a href="login.html">Log in</a>
+                    </p>
+
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        (function () {
+            const form = document.getElementById("signup-form");
+            const password = document.getElementById("password");
+            const toggleButton = document.querySelector(".toggle-password");
+
+            // Show / hide password
+            toggleButton.addEventListener("click", function () {
+                const show = password.type === "password";
+
+                password.type = show ? "text" : "password";
+                toggleButton.classList.toggle("is-visible", show);
+                toggleButton.setAttribute("aria-pressed", String(show));
+                toggleButton.setAttribute(
+                    "aria-label",
+                    show ? "Hide password" : "Show password"
+                );
+            });
+
+            // Display validation messages
+            function checkField(element) {
+                const field = element.closest(".field");
+
+                if (!field) return;
+
+                field.classList.toggle("invalid", !element.checkValidity());
+            }
+
+            form.querySelectorAll("input, select").forEach(function (element) {
+                element.addEventListener("blur", function () {
+                    checkField(element);
+                });
+
+                element.addEventListener("input", function () {
+                    if (element.closest(".field").classList.contains("invalid")) {
+                        checkField(element);
+                    }
+                });
+
+                element.addEventListener("change", function () {
+                    checkField(element);
+                });
+            });
+
+            // Validate before submitting
+            form.addEventListener("submit", function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+
+                    form.querySelectorAll("input, select").forEach(function (element) {
+                        checkField(element);
+                    });
+
+                    const firstInvalid = form.querySelector(
+                        ".field.invalid input, .field.invalid select"
+                    );
+
+                    if (firstInvalid) {
+                        firstInvalid.focus();
+                    }
+                }
+            });
+
+            // Google sign-up requires Google authentication setup.
+            document.getElementById("google-signup").addEventListener("click", function () {
+                alert("Google sign-up is not connected yet.");
+            });
+        })();
+    </script>
+
+</body>
+</html>
+```

@@ -1,0 +1,1819 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f5c38">
+<title>Create Thread | AcadX</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --green: #0f5c38;
+  --green-dark: #0b452b;
+  --green-light: #e9f5ed;
+  --yellow: #fdc92f;
+  --ink: #183b29;
+  --text: #252b27;
+  --muted: #7b8580;
+  --bg: #f5f8f5;
+  --white: #ffffff;
+  --line: #e5ebe6;
+  --sidebar: 260px;
+  --shadow: 0 4px 18px rgba(20, 60, 38, .07);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+/* =========================
+   DASHBOARD LAYOUT
+========================= */
+
+.ax-app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: var(--sidebar) minmax(0, 1fr);
+}
+
+.ax-sidebar {
+  background: var(--green);
+  color: white;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: 30;
+}
+
+.ax-logo {
+  padding: 27px 28px 20px;
+  font-size: 36px;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -2px;
+}
+
+.ax-logo span {
+  color: var(--yellow);
+}
+
+.ax-sidebar-label {
+  color: rgba(255,255,255,.55);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+  padding: 22px 30px 10px;
+}
+
+.ax-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 0 15px;
+}
+
+.ax-nav a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 13px 17px;
+  border-radius: 12px;
+  color: rgba(255,255,255,.88);
+  font-size: 13px;
+  font-weight: 500;
+  transition: .2s;
+}
+
+.ax-nav a svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ax-nav a:hover {
+  background: rgba(255,255,255,.1);
+  color: white;
+}
+
+.ax-nav a.ax-active {
+  background: var(--yellow);
+  color: var(--green-dark);
+  font-weight: 700;
+}
+
+.ax-side-bottom {
+  margin-top: auto;
+  padding: 20px 16px 0;
+}
+
+.ax-side-art {
+  height: 165px;
+  border-radius: 15px 15px 0 0;
+  overflow: hidden;
+  position: relative;
+  background: var(--green-dark);
+}
+
+.ax-side-art::before {
+  content: "";
+  position: absolute;
+  height: 5px;
+  background: var(--yellow);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.ax-side-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* =========================
+   MAIN AND TOPBAR
+========================= */
+
+.ax-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ax-topbar {
+  min-height: 82px;
+  padding: 14px clamp(20px, 3vw, 42px);
+  background: white;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  position: sticky;
+  top: 0;
+  z-index: 15;
+}
+
+.ax-menu-btn {
+  display: none;
+  background: none;
+  border: 0;
+  color: var(--green);
+}
+
+.ax-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 650px);
+  background: #f2f5f2;
+  border: 1px solid transparent;
+  padding: 12px 17px;
+  border-radius: 12px;
+  transition: .2s;
+}
+
+.ax-search:focus-within {
+  border-color: var(--green);
+  background: white;
+}
+
+.ax-search svg {
+  color: #8b968f;
+  width: 19px;
+}
+
+.ax-search input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  width: 100%;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.ax-search input::placeholder {
+  color: #9ba39e;
+}
+
+.ax-user {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 19px;
+}
+
+.ax-notification {
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.ax-notification::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ef5151;
+  top: 1px;
+  right: 1px;
+  border: 2px solid white;
+}
+
+.ax-divider {
+  height: 34px;
+  width: 1px;
+  background: var(--line);
+}
+
+.ax-profile {
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  text-align: left;
+}
+
+.ax-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #e5eee7;
+  flex-shrink: 0;
+}
+
+.ax-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ax-profile b {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ax-profile small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.ax-profile > svg {
+  width: 15px;
+  color: #859188;
+}
+
+/* =========================
+   PAGE CONTENT
+========================= */
+
+.ax-content {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 34px clamp(20px, 3vw, 42px) 55px;
+}
+
+.ax-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+.ax-breadcrumb a:hover {
+  color: var(--green);
+}
+
+.ax-breadcrumb span:last-child {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.ax-page-heading {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin-bottom: 28px;
+}
+
+.ax-page-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 17px;
+  display: grid;
+  place-items: center;
+  background: var(--green);
+  color: white;
+  box-shadow: 0 5px 12px rgba(15,92,56,.15);
+}
+
+.ax-page-icon svg {
+  width: 29px;
+  height: 29px;
+}
+
+.ax-page-heading h1 {
+  color: var(--ink);
+  font-size: clamp(23px, 3vw, 30px);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ax-page-heading p {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 5px;
+  line-height: 1.6;
+}
+
+/* =========================
+   CREATE THREAD LAYOUT
+========================= */
+
+.ax-create {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 23px;
+  align-items: start;
+}
+
+.ax-form {
+  min-width: 0;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: clamp(18px, 2.5vw, 28px);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+}
+
+.ax-form-heading {
+  padding-bottom: 17px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ax-form-heading h2 {
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.ax-form-heading p {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.ax-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.ax-label {
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ax-label em {
+  color: #e34c4c;
+  font-style: normal;
+}
+
+.ax-input,
+.ax-select-input {
+  width: 100%;
+  border: 1px solid #e2e9e3;
+  border-radius: 11px;
+  background: #fbfcfb;
+  outline: none;
+  padding: 13px 15px;
+  font-size: 11px;
+  color: var(--text);
+  transition: .2s;
+}
+
+.ax-input:focus,
+.ax-select-input:focus {
+  border-color: var(--green);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(15,92,56,.08);
+}
+
+.ax-input::placeholder,
+.ax-select-input::placeholder {
+  color: #a0aaa3;
+}
+
+/* =========================
+   TEXT EDITOR
+========================= */
+
+.ax-editor {
+  border: 1px solid #e2e9e3;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  transition: .2s;
+}
+
+.ax-editor:focus-within {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(15,92,56,.07);
+}
+
+.ax-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  padding: 9px 12px;
+  background: #f4f8f4;
+  border-bottom: 1px solid var(--line);
+}
+
+.ax-tools button {
+  width: 33px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #536158;
+  font-size: 13px;
+}
+
+.ax-tools button:hover {
+  background: #e2eee5;
+  color: var(--green);
+}
+
+.ax-tools button svg {
+  width: 17px;
+  height: 17px;
+}
+
+.ax-tool-separator {
+  width: 1px;
+  height: 20px;
+  background: #d9e2da;
+  margin: 0 5px;
+}
+
+.ax-textarea {
+  min-height: 190px;
+  padding: 17px;
+  outline: none;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.ax-textarea:empty::before {
+  content: attr(data-placeholder);
+  color: #a0aaa3;
+}
+
+.ax-textarea ul,
+.ax-textarea ol {
+  padding-left: 22px;
+}
+
+/* =========================
+   UPLOADS
+========================= */
+
+.ax-uploads {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+  gap: 11px;
+}
+
+.ax-drop {
+  min-height: 135px;
+  border: 1.5px dashed #a9c9b3;
+  border-radius: 12px;
+  background: #f7fbf7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  cursor: pointer;
+  padding: 13px;
+  transition: .2s;
+  grid-column: span 2;
+}
+
+.ax-drop:hover,
+.ax-drop.ax-over {
+  background: #eaf5ec;
+  border-color: var(--green);
+}
+
+.ax-drop > svg {
+  width: 26px;
+  height: 26px;
+  color: var(--green);
+  margin-bottom: 4px;
+}
+
+.ax-drop > span {
+  font-size: 10px;
+  color: #67766b;
+}
+
+.ax-choose {
+  background: var(--green);
+  color: white !important;
+  padding: 7px 17px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin: 3px 0;
+}
+
+.ax-drop small {
+  color: #9aa49d;
+  font-size: 9px;
+}
+
+.ax-thumb {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 11px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #edf2ee;
+}
+
+.ax-thumb img,
+.ax-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ax-thumb button {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 25px;
+  height: 25px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(20,40,28,.75);
+  color: white;
+  font-size: 13px;
+}
+
+.ax-addmore {
+  min-height: 100px;
+  border: 1px dashed #cbd8cd;
+  border-radius: 11px;
+  background: white;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.ax-addmore:hover {
+  background: var(--green-light);
+}
+
+/* =========================
+   OPTIONS
+========================= */
+
+.ax-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 13px;
+}
+
+.ax-select {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.ax-select > span {
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.ax-select > span svg {
+  width: 16px;
+  height: 16px;
+  color: var(--green);
+}
+
+.ax-select-input {
+  padding: 11px 12px;
+}
+
+.ax-switch {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #5f6c63;
+  font-size: 11px;
+  cursor: pointer;
+  grid-column: 1 / -1;
+}
+
+.ax-switch input {
+  position: absolute;
+  opacity: 0;
+}
+
+.ax-switch i {
+  width: 38px;
+  height: 21px;
+  border-radius: 20px;
+  background: #cbd2cc;
+  position: relative;
+  transition: .2s;
+}
+
+.ax-switch i::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: 3px;
+  top: 3px;
+  border-radius: 50%;
+  background: white;
+  transition: .2s;
+}
+
+.ax-switch input:checked + i {
+  background: var(--green);
+}
+
+.ax-switch input:checked + i::after {
+  transform: translateX(17px);
+}
+
+.ax-switch input:focus-visible + i {
+  outline: 3px solid var(--yellow);
+  outline-offset: 2px;
+}
+
+/* =========================
+   FORM BUTTONS
+========================= */
+
+.ax-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 11px;
+  padding-top: 19px;
+  border-top: 1px solid var(--line);
+}
+
+.ax-btn {
+  border-radius: 9px;
+  padding: 11px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  transition: .2s;
+}
+
+.ax-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.ax-btn-ghost {
+  border: 1px solid #dce4dd;
+  background: white;
+  color: #59675d;
+}
+
+.ax-btn-ghost:hover {
+  background: #f5f8f5;
+}
+
+.ax-btn-primary {
+  background: var(--green);
+  color: white;
+  border: 1px solid var(--green);
+  box-shadow: 0 3px 8px rgba(15,92,56,.15);
+}
+
+.ax-btn-primary:hover {
+  background: var(--green-dark);
+}
+
+.ax-msg {
+  min-height: 17px;
+  font-size: 10px;
+  color: var(--green);
+  text-align: right;
+}
+
+.ax-msg.ax-err {
+  color: #d33c3c;
+}
+
+/* =========================
+   LIVE PREVIEW
+========================= */
+
+.ax-preview {
+  position: sticky;
+  top: 102px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.ax-preview-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.ax-preview-heading h2 {
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.ax-live-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  color: var(--green);
+  font-weight: 600;
+}
+
+.ax-live-dot {
+  width: 7px;
+  height: 7px;
+  background: #20c56a;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #e0f7e9;
+}
+
+.ax-preview-card {
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 15px;
+  background: #fff;
+}
+
+.ax-preview-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ax-preview-user .ax-avatar {
+  width: 37px;
+  height: 37px;
+}
+
+.ax-preview-user b {
+  display: block;
+  color: var(--ink);
+  font-size: 10px;
+}
+
+.ax-preview-user small {
+  color: var(--muted);
+  display: block;
+  font-size: 9px;
+  margin-top: 2px;
+}
+
+.ax-preview-card h3 {
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-top: 16px;
+  overflow-wrap: anywhere;
+}
+
+.ax-preview-card p {
+  font-size: 10px;
+  line-height: 1.8;
+  color: #657168;
+  margin-top: 8px;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.ax-preview-media {
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 9px;
+}
+
+.ax-preview-media img,
+.ax-preview-media video {
+  width: 100%;
+  max-height: 230px;
+  object-fit: cover;
+  display: block;
+}
+
+.ax-preview-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 13px;
+  margin-top: 13px;
+  border-top: 1px solid var(--line);
+  color: #87928a;
+  font-size: 9px;
+}
+
+.ax-preview-actions span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ax-preview-actions svg {
+  width: 14px;
+  height: 14px;
+}
+
+.ax-preview-note {
+  font-size: 10px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-top: 14px;
+  padding: 11px;
+  background: #f5f8f5;
+  border-radius: 9px;
+}
+
+/* =========================
+   MOBILE SIDEBAR
+========================= */
+
+.ax-scrim {
+  display: none;
+}
+
+@media (max-width: 1150px) {
+  .ax-create {
+    grid-template-columns: minmax(0,1fr) 290px;
+  }
+}
+
+@media (max-width: 950px) {
+  .ax-app {
+    grid-template-columns: 1fr;
+  }
+
+  .ax-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(280px, 85vw);
+    height: 100vh;
+    transform: translateX(-105%);
+    transition: transform .25s ease;
+  }
+
+  .ax-sidebar.ax-open {
+    transform: translateX(0);
+  }
+
+  .ax-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.42);
+    z-index: 25;
+    opacity: 0;
+    visibility: hidden;
+    transition: .25s;
+  }
+
+  .ax-scrim.ax-show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .ax-menu-btn {
+    display: grid;
+    place-items: center;
+  }
+
+  .ax-create {
+    grid-template-columns: 1fr;
+  }
+
+  .ax-preview {
+    position: static;
+  }
+
+  .ax-preview-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 620px) {
+  .ax-topbar {
+    min-height: 70px;
+    padding: 12px 16px;
+    gap: 13px;
+    flex-wrap: wrap;
+  }
+
+  .ax-user {
+    gap: 12px;
+  }
+
+  .ax-profile > div,
+  .ax-profile > svg,
+  .ax-divider {
+    display: none;
+  }
+
+  .ax-avatar {
+    width: 37px;
+    height: 37px;
+  }
+
+  .ax-search {
+    order: 3;
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .ax-content {
+    padding: 23px 15px 35px;
+  }
+
+  .ax-breadcrumb {
+    margin-bottom: 18px;
+  }
+
+  .ax-page-heading {
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .ax-page-icon {
+    width: 49px;
+    height: 49px;
+    border-radius: 13px;
+  }
+
+  .ax-page-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .ax-page-heading h1 {
+    font-size: 22px;
+  }
+
+  .ax-page-heading p {
+    font-size: 10px;
+  }
+
+  .ax-form {
+    padding: 17px;
+    border-radius: 14px;
+    gap: 19px;
+  }
+
+  .ax-options {
+    grid-template-columns: 1fr;
+  }
+
+  .ax-switch {
+    grid-column: auto;
+  }
+
+  .ax-form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .ax-btn {
+    width: 100%;
+  }
+
+  .ax-msg {
+    text-align: center;
+  }
+
+  .ax-drop {
+    grid-column: 1 / -1;
+  }
+
+  .ax-preview {
+    padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="ax-app">
+
+  <!-- SIDEBAR -->
+  <aside class="ax-sidebar" id="sidebar">
+
+    <div class="ax-logo">
+      <a href="Dashboard-home.html">Acad<span>X</span></a>
+    </div>
+
+    <div class="ax-sidebar-label">YOUR SPACE</div>
+
+    <nav class="ax-nav">
+
+      <a href="Dashboard-home.html">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/>
+        </svg>
+        Home
+      </a>
+
+      <a href="explore (2).html">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="m16 16 5 5M11 8v6M8 11h6"/>
+        </svg>
+        Explore
+      </a>
+
+      <a href="forum-section2.html" class="ax-active" aria-current="page">
+        <svg viewBox="0 0 24 24">
+          <path d="M4 5h12a2 2 0 012 2v6a2 2 0 01-2 2H9l-4 3v-3H4a2 2 0 01-2-2V7a2 2 0 012-2z"/>
+          <path d="M20 9h1a1 1 0 011 1v7l-3-2h-6"/>
+        </svg>
+        Forums
+      </a>
+
+      <a href="acadx-my-posts-redesign.html">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 3h8l5 5v13H6zM14 3v5h5M9 13h7M9 17h7"/>
+        </svg>
+        My Post
+      </a>
+
+      <a href="notification2.html">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 17V11a6 6 0 0112 0v6l2 2H4zM10 21a2 2 0 004 0"/>
+        </svg>
+        Notification
+      </a>
+
+      <a href="friends.html">
+        <svg viewBox="0 0 24 24">
+          <circle cx="9" cy="8" r="3.5"/>
+          <path d="M2 20c0-4 3-6 7-6s7 2 7 6M16 4.5a3.5 3.5 0 010 7M18 14c2.5.6 4 2.4 4 6"/>
+        </svg>
+        Friends
+      </a>
+
+      <a href="badges-redesigned.html">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="10" r="6"/>
+          <path d="M12 7l1 2 2 .3-1.5 1.5.4 2.2-1.9-1-1.9 1 .4-2.2L9 9.3l2-.3zM8 15l-2 6 4-2 2 2M16 15l2 6-4-2"/>
+        </svg>
+        Badges
+      </a>
+
+    </nav>
+
+    <div class="ax-side-bottom">
+      <div class="ax-side-art">
+        <img src="images/school.jpg" alt="School campus" onerror="this.remove()">
+      </div>
+    </div>
+
+  </aside>
+
+  <div class="ax-scrim" id="scrim"></div>
+
+  <!-- MAIN -->
+  <main class="ax-main">
+
+    <!-- TOPBAR -->
+    <header class="ax-topbar">
+
+      <button class="ax-menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+
+      <label class="ax-search">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="m20 20-4-4"/>
+        </svg>
+        <input type="search" placeholder="Search Here..." aria-label="Search">
+      </label>
+
+      <div class="ax-user">
+
+        <button class="ax-notification" aria-label="Notifications" onclick="location.href='notification.html'">
+          <svg viewBox="0 0 24 24">
+            <path d="M6 17V11a6 6 0 0112 0v6l2 2H4zM10 21a2 2 0 004 0"/>
+          </svg>
+        </button>
+
+        <span class="ax-divider"></span>
+
+        <button class="ax-profile">
+          <span class="ax-avatar">
+            <img src="images/avatar.jpg" alt="Profile" onerror="this.remove()">
+          </span>
+          <div>
+            <b>Saitama</b>
+            <small>Grade 9</small>
+          </div>
+          <svg viewBox="0 0 24 24">
+            <path d="m5 9 7 7 7-7"/>
+          </svg>
+        </button>
+
+      </div>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <section class="ax-content">
+
+      <div class="ax-breadcrumb">
+        <a href="forum.html">Home</a>
+        <span>›</span>
+        <a href="forum-section.html">Forums</a>
+        <span>›</span>
+        <span>Create Thread</span>
+      </div>
+
+      <div class="ax-page-heading">
+
+        <div class="ax-page-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 5h16v11H9l-5 4z"/>
+            <path d="M8 9h8M8 12h5"/>
+          </svg>
+        </div>
+
+        <div>
+          <h1>Create Thread</h1>
+          <p>Share your thoughts, ask questions, and start a discussion with the AcadX community.</p>
+        </div>
+
+      </div>
+
+      <div class="ax-create">
+
+        <!-- CREATE FORM -->
+        <form class="ax-form" id="threadForm" novalidate>
+
+          <div class="ax-form-heading">
+            <h2>Write your discussion</h2>
+            <p>Fill in the details below to create your forum thread.</p>
+          </div>
+
+          <!-- TITLE -->
+          <div class="ax-field">
+            <label for="title" class="ax-label">
+              Thread Title <em>*</em>
+            </label>
+
+            <input
+              id="title"
+              class="ax-input"
+              type="text"
+              placeholder="Enter a catchy and clear title..."
+              maxlength="120"
+              required
+            >
+          </div>
+
+          <!-- POST -->
+          <div class="ax-field">
+
+            <span class="ax-label" id="postLabel">
+              Your Post <em>*</em>
+            </span>
+
+            <div class="ax-editor">
+
+              <div class="ax-tools" role="toolbar" aria-label="Text formatting">
+
+                <button type="button" data-cmd="bold" aria-label="Bold">
+                  <b>B</b>
+                </button>
+
+                <button type="button" data-cmd="italic" aria-label="Italic">
+                  <i>I</i>
+                </button>
+
+                <button type="button" data-cmd="underline" aria-label="Underline">
+                  <u>U</u>
+                </button>
+
+                <span class="ax-tool-separator"></span>
+
+                <button type="button" data-cmd="insertUnorderedList" aria-label="Bulleted list">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/>
+                  </svg>
+                </button>
+
+                <button type="button" data-cmd="insertOrderedList" aria-label="Numbered list">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M10 6h10M10 12h10M10 18h10M4 5l1-1v4M4 14h2l-2 3h2"/>
+                  </svg>
+                </button>
+
+                <button type="button" data-cmd="justifyLeft" aria-label="Align left">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 6h16M4 10h10M4 14h16M4 18h10"/>
+                  </svg>
+                </button>
+
+              </div>
+
+              <div
+                id="post"
+                class="ax-textarea"
+                contenteditable="true"
+                role="textbox"
+                aria-multiline="true"
+                aria-labelledby="postLabel"
+                data-placeholder="Start writing your discussion..."
+              ></div>
+
+            </div>
+          </div>
+
+          <!-- UPLOADS -->
+          <div class="ax-field">
+
+            <span class="ax-label">Attachments</span>
+
+            <div class="ax-uploads" id="uploads">
+
+              <label class="ax-drop" id="drop">
+
+                <svg viewBox="0 0 24 24">
+                  <path d="M7 18a4 4 0 010-8 5 5 0 019.6-1A4.5 4.5 0 0117 18"/>
+                  <path d="M12 12v8M9 15l3-3 3 3"/>
+                </svg>
+
+                <span>Drag and drop files here</span>
+                <span>or</span>
+                <span class="ax-choose">Choose file</span>
+                <small>JPG, PNG, MP4</small>
+
+                <input
+                  id="file"
+                  type="file"
+                  accept="image/jpeg,image/png,video/mp4"
+                  multiple
+                  hidden
+                >
+
+              </label>
+
+              <button type="button" class="ax-addmore" id="addMore">
+                + Add more
+              </button>
+
+            </div>
+          </div>
+
+          <!-- OPTIONS -->
+          <div class="ax-field">
+
+            <span class="ax-label">Thread Settings</span>
+
+            <div class="ax-options">
+
+              <label class="ax-select">
+                <span>
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3 7h7l2 2h9v10H3z"/>
+                  </svg>
+                  Category
+                </span>
+
+                <select id="category" class="ax-select-input">
+                  <option value="">Select Category</option>
+                  <option>General</option>
+                  <option>Academics</option>
+                  <option>ICT</option>
+                  <option>School Life</option>
+                  <option>Announcements</option>
+                </select>
+              </label>
+
+              <label class="ax-select">
+                <span>
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3 12V4h8l9 9-8 8z"/>
+                  </svg>
+                  Tags (Optional)
+                </span>
+
+                <input
+                  id="tags"
+                  class="ax-select-input"
+                  type="text"
+                  placeholder="Add tags..."
+                >
+              </label>
+
+              <label class="ax-select">
+                <span>
+                  <svg viewBox="0 0 24 24">
+                    <path d="M6 11V8a6 6 0 0112 0v3M5 11h14v10H5z"/>
+                  </svg>
+                  Privacy
+                </span>
+
+                <select id="privacy" class="ax-select-input">
+                  <option>Public</option>
+                  <option>Private</option>
+                </select>
+              </label>
+
+              <label class="ax-switch">
+                <input type="checkbox" id="replies" checked>
+                <i></i>
+                <span>Allow replies to this thread</span>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- ACTIONS -->
+          <div class="ax-form-actions">
+
+            <button type="button" class="ax-btn ax-btn-ghost" id="draft">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 4h12l3 3v13H4V4z"/>
+                <path d="M8 4v6h8V4M8 20v-6h8v6"/>
+              </svg>
+              Save Draft
+            </button>
+
+            <button type="submit" class="ax-btn ax-btn-primary">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 4l18 8-18 8 3-8zM6 12h8"/>
+              </svg>
+              Create Thread
+            </button>
+
+          </div>
+
+          <p class="ax-msg" id="msg" role="status"></p>
+
+        </form>
+
+        <!-- LIVE PREVIEW -->
+        <aside class="ax-preview">
+
+          <div class="ax-preview-heading">
+            <h2>Live Preview</h2>
+
+            <span class="ax-live-label">
+              <i class="ax-live-dot"></i>
+              LIVE
+            </span>
+          </div>
+
+          <article class="ax-preview-card">
+
+            <div class="ax-preview-user">
+
+              <span class="ax-avatar">
+                <img src="images/avatar.jpg" alt="Profile" onerror="this.remove()">
+              </span>
+
+              <div>
+                <b>Saitama</b>
+                <small>Just now</small>
+              </div>
+
+            </div>
+
+            <h3 id="pvTitle">Your thread title will appear here</h3>
+
+            <p id="pvBody">Your discussion will appear here. Start writing in the editor to see your post preview.</p>
+
+            <div class="ax-preview-media" id="pvMedia" hidden></div>
+
+            <div class="ax-preview-actions">
+
+              <span>
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 20s-8-5-8-11a4.5 4.5 0 018-2.8A4.5 4.5 0 0120 9c0 6-8 11-8 11z"/>
+                </svg>
+                Like
+              </span>
+
+              <span>
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 5h16v11H9l-5 4z"/>
+                </svg>
+                Comment
+              </span>
+
+              <span>
+                <svg viewBox="0 0 24 24">
+                  <path d="M3 4l18 8-18 8 3-8zM6 12h8"/>
+                </svg>
+                Share
+              </span>
+
+            </div>
+
+          </article>
+
+          <div class="ax-preview-note">
+            <strong>Preview tip</strong><br>
+            This is how your thread content will look when displayed in the AcadX community.
+          </div>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<script>
+/* =========================
+   MOBILE SIDEBAR
+========================= */
+
+const sidebar = document.getElementById('sidebar');
+const scrim = document.getElementById('scrim');
+const menuBtn = document.getElementById('menuBtn');
+
+function toggleSidebar(open) {
+  sidebar.classList.toggle('ax-open', open);
+  scrim.classList.toggle('ax-show', open);
+  menuBtn.setAttribute('aria-expanded', String(open));
+}
+
+menuBtn.addEventListener('click', () => {
+  toggleSidebar(!sidebar.classList.contains('ax-open'));
+});
+
+scrim.addEventListener('click', () => toggleSidebar(false));
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') toggleSidebar(false);
+});
+
+
+/* =========================
+   CREATE THREAD ELEMENTS
+========================= */
+
+const $ = id => document.getElementById(id);
+
+const title = $('title');
+const post = $('post');
+const pvTitle = $('pvTitle');
+const pvBody = $('pvBody');
+const pvMedia = $('pvMedia');
+const uploads = $('uploads');
+const fileInput = $('file');
+const message = $('msg');
+
+const DEFAULT_TITLE = 'Your thread title will appear here';
+const DEFAULT_BODY = 'Your discussion will appear here. Start writing in the editor to see your post preview.';
+
+
+/* =========================
+   LIVE PREVIEW
+========================= */
+
+title.addEventListener('input', () => {
+  pvTitle.textContent = title.value.trim() || DEFAULT_TITLE;
+});
+
+post.addEventListener('input', () => {
+  pvBody.textContent = post.innerText.trim() || DEFAULT_BODY;
+});
+
+
+/* =========================
+   TEXT FORMATTING
+========================= */
+
+document.querySelectorAll('.ax-tools [data-cmd]').forEach(button => {
+
+  button.addEventListener('mousedown', event => {
+    event.preventDefault();
+  });
+
+  button.addEventListener('click', () => {
+    post.focus();
+    document.execCommand(button.dataset.cmd, false, null);
+    post.focus();
+  });
+
+});
+
+
+/* =========================
+   FILE UPLOADS
+========================= */
+
+function refreshMedia() {
+
+  const first = uploads.querySelector('.ax-thumb');
+
+  pvMedia.innerHTML = '';
+  pvMedia.hidden = !first;
+
+  if (first) {
+    const preview = first.querySelector('img, video');
+
+    if (preview) {
+      const clone = preview.cloneNode(true);
+
+      if (clone.tagName === 'VIDEO') {
+        clone.controls = true;
+        clone.muted = true;
+      }
+
+      pvMedia.appendChild(clone);
+    }
+  }
+}
+
+function addFiles(files) {
+
+  [...files].forEach(file => {
+
+    if (!/^(image\/(jpeg|png)|video\/mp4)$/.test(file.type)) {
+      return;
+    }
+
+    const url = URL.createObjectURL(file);
+
+    const thumb = document.createElement('div');
+    thumb.className = 'ax-thumb';
+
+    let media;
+
+    if (file.type.startsWith('video')) {
+      media = document.createElement('video');
+      media.muted = true;
+    } else {
+      media = document.createElement('img');
+      media.alt = 'Uploaded attachment';
+    }
+
+    media.src = url;
+    thumb.appendChild(media);
+
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.textContent = '×';
+    remove.setAttribute('aria-label', 'Remove attachment');
+
+    remove.addEventListener('click', () => {
+      thumb.remove();
+      URL.revokeObjectURL(url);
+      refreshMedia();
+    });
+
+    thumb.appendChild(remove);
+
+    uploads.insertBefore(thumb, $('addMore'));
+
+  });
+
+  refreshMedia();
+}
+
+fileInput.addEventListener('change', () => {
+  addFiles(fileInput.files);
+  fileInput.value = '';
+});
+
+$('addMore').addEventListener('click', () => {
+  fileInput.click();
+});
+
+
+/* =========================
+   DRAG AND DROP
+========================= */
+
+const drop = $('drop');
+
+['dragenter', 'dragover'].forEach(eventName => {
+
+  drop.addEventListener(eventName, event => {
+    event.preventDefault();
+    drop.classList.add('ax-over');
+  });
+
+});
+
+['dragleave', 'drop'].forEach(eventName => {
+
+  drop.addEventListener(eventName, event => {
+    event.preventDefault();
+    drop.classList.remove('ax-over');
+  });
+
+});
+
+drop.addEventListener('drop', event => {
+  addFiles(event.dataTransfer.files);
+});
+
+
+/* =========================
+   STATUS MESSAGE
+========================= */
+
+function say(text, error = false) {
+  message.textContent = text;
+  message.classList.toggle('ax-err', error);
+}
+
+
+/* =========================
+   SAVE DRAFT
+========================= */
+
+$('draft').addEventListener('click', () => {
+
+  const draftData = {
+    title: title.value,
+    post: post.innerHTML,
+    category: $('category').value,
+    tags: $('tags').value,
+    privacy: $('privacy').value,
+    replies: $('replies').checked
+  };
+
+  try {
+    localStorage.setItem('acadXThreadDraft', JSON.stringify(draftData));
+    say('Your draft has been saved on this device.');
+  } catch (error) {
+    say('Unable to save your draft in this browser.', true);
+  }
+
+});
+
+
+/* =========================
+   RESTORE DRAFT
+========================= */
+
+try {
+
+  const savedDraft = localStorage.getItem('acadXThreadDraft');
+
+  if (savedDraft) {
+
+    const data = JSON.parse(savedDraft);
+
+    title.value = data.title || '';
+    post.innerHTML = data.post || '';
+    $('category').value = data.category || '';
+    $('tags').value = data.tags || '';
+    $('privacy').value = data.privacy || 'Public';
+    $('replies').checked = data.replies !== false;
+
+    pvTitle.textContent = title.value.trim() || DEFAULT_TITLE;
+    pvBody.textContent = post.innerText.trim() || DEFAULT_BODY;
+
+  }
+
+} catch (error) {
+  console.warn('Could not restore saved draft.');
+}
+
+
+/* =========================
+   SUBMIT THREAD
+========================= */
+
+$('threadForm').addEventListener('submit', event => {
+
+  event.preventDefault();
+
+  if (!title.value.trim()) {
+    say('Please enter a thread title.', true);
+    title.focus();
+    return;
+  }
+
+  if (!post.innerText.trim()) {
+    say('Please write something in your post.', true);
+    post.focus();
+    return;
+  }
+
+  say('Thread details are ready! Connect your backend to publish this thread.');
+
+});
+</script>
+
+</body>
+</html>

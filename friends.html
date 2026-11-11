@@ -1,0 +1,1621 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b5638">
+  <title>Friends | Acad X</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Your existing dashboard stylesheet -->
+  <link rel="stylesheet" href="dashboard.css">
+
+  <style>
+    /* FRIENDS PAGE */
+    .friends-page {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      min-width: 0;
+    }
+
+    .friends-hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      min-height: 190px;
+      overflow: hidden;
+      padding: 30px 34px;
+      border: 1px solid #e8eee6;
+      border-radius: 22px;
+      background: linear-gradient(115deg, #fff 0%, #fff 55%, #fff5d6 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .friends-hero::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: 5%;
+      top: -110px;
+      border: 1px solid rgba(19,132,84,.15);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 25px rgba(19,132,84,.035),
+        0 0 0 50px rgba(19,132,84,.025);
+    }
+
+    .friends-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+    }
+
+    .friends-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: var(--green-700);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .13em;
+    }
+
+    .friends-kicker span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--yellow);
+      box-shadow: 0 0 0 4px rgba(255,211,79,.2);
+    }
+
+    .friends-hero h1 {
+      font-family: Poppins, sans-serif;
+      color: var(--green-950);
+      font-size: clamp(29px, 3vw, 39px);
+      line-height: 1.15;
+      letter-spacing: -.045em;
+    }
+
+    .friends-hero h1 span {
+      color: var(--green-700);
+    }
+
+    .friends-hero p {
+      max-width: 420px;
+      margin-top: 10px;
+      color: #718078;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .friends-hero-art {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 125px;
+      height: 125px;
+      margin-right: 35px;
+      border: 1px solid rgba(19,132,84,.13);
+      border-radius: 50%;
+      background: rgba(255,255,255,.65);
+      color: var(--green-800);
+    }
+
+    .friends-hero-art svg {
+      width: 59px;
+      height: 59px;
+      stroke-width: 1.3;
+    }
+
+    .friends-hero-art::after {
+      content: "✦";
+      position: absolute;
+      top: 5px;
+      right: 1px;
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--yellow);
+      color: #735a13;
+      font-size: 17px;
+    }
+
+    .friends-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 13px;
+    }
+
+    .friend-stat {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-width: 0;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-icon {
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      background: #eaf5ed;
+      color: var(--green-800);
+    }
+
+    .stat-icon.yellow {
+      background: var(--yellow-soft);
+      color: #a27d10;
+    }
+
+    .stat-icon.purple {
+      background: #f0ebfa;
+      color: #7956ad;
+    }
+
+    .stat-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .stat-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .stat-info strong {
+      color: var(--ink);
+      font-family: Poppins, sans-serif;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .stat-info span {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .friends-section {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      min-width: 0;
+    }
+
+    .friends-section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .friends-section-heading .eyebrow {
+      color: #8a988f;
+      font-size: 9px;
+    }
+
+    .friends-section-heading h2 {
+      margin-top: 4px;
+      font-family: Poppins, sans-serif;
+      font-size: 20px;
+      letter-spacing: -.035em;
+    }
+
+    .friends-section-heading p {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .friends-search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: min(280px, 100%);
+      padding: 10px 13px;
+      border: 1px solid #e5ece7;
+      border-radius: 11px;
+      background: #fff;
+      color: #8a988f;
+    }
+
+    .friends-search:focus-within {
+      border-color: #78b995;
+      box-shadow: 0 0 0 4px rgba(19,132,84,.07);
+    }
+
+    .friends-search svg {
+      width: 17px;
+      height: 17px;
+      flex: none;
+    }
+
+    .friends-search input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--ink);
+      font-size: 11px;
+    }
+
+    .friends-search input::placeholder {
+      color: #98a39c;
+    }
+
+    .friends-tabs {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      overflow-x: auto;
+      padding: 2px 0 5px;
+      scrollbar-width: none;
+    }
+
+    .friends-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .friends-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      flex: none;
+      padding: 9px 14px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      background: transparent;
+      color: #718078;
+      font-size: 11px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .friends-tab:hover {
+      background: #fff;
+      border-color: var(--line);
+      color: var(--green-800);
+    }
+
+    .friends-tab.active {
+      border-color: #d9ebdf;
+      background: #eaf5ed;
+      color: var(--green-900);
+    }
+
+    .friends-tab .tab-count {
+      display: grid;
+      place-items: center;
+      min-width: 19px;
+      height: 19px;
+      padding: 0 5px;
+      border-radius: 20px;
+      background: rgba(13,104,66,.09);
+      font-size: 9px;
+    }
+
+    .friends-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+    }
+
+    .friend-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+
+    .friend-card:hover {
+      transform: translateY(-3px);
+      border-color: #d7e8dc;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .friend-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .friend-identity {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .friend-avatar {
+      position: relative;
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 49px;
+      height: 49px;
+      border-radius: 15px;
+      color: #fff;
+      font-family: Poppins, sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .friend-avatar.green { background: linear-gradient(145deg,#52b886,#176a46); }
+    .friend-avatar.purple { background: linear-gradient(145deg,#ad91df,#68499f); }
+    .friend-avatar.orange { background: linear-gradient(145deg,#f0b477,#bd713b); }
+    .friend-avatar.blue { background: linear-gradient(145deg,#82b6df,#477cae); }
+    .friend-avatar.pink { background: linear-gradient(145deg,#e6a2c0,#ae5e87); }
+    .friend-avatar.teal { background: linear-gradient(145deg,#72c8c0,#31877e); }
+
+    .friend-online {
+      position: absolute;
+      right: -2px;
+      bottom: -2px;
+      width: 12px;
+      height: 12px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: #39ae70;
+    }
+
+    .friend-name {
+      min-width: 0;
+    }
+
+    .friend-name strong {
+      display: block;
+      overflow: hidden;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .friend-name span {
+      display: block;
+      margin-top: 4px;
+      color: #8b978f;
+      font-size: 10px;
+    }
+
+    .friend-more {
+      padding: 4px 7px;
+      border: 0;
+      border-radius: 7px;
+      background: transparent;
+      color: #9aa59e;
+      letter-spacing: 2px;
+    }
+
+    .friend-more:hover {
+      background: #f2f6f2;
+      color: var(--green-800);
+    }
+
+    .friend-bio {
+      min-height: 38px;
+      margin: 15px 0 12px;
+      color: #718078;
+      font-size: 11px;
+      line-height: 1.65;
+    }
+
+    .friend-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .friend-meta span {
+      padding: 5px 8px;
+      border-radius: 7px;
+      background: #f1f6f2;
+      color: #668171;
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .friend-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid #eff2ef;
+    }
+
+    .friend-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      flex: 1;
+      min-height: 36px;
+      padding: 8px 10px;
+      border: 1px solid #dcebe0;
+      border-radius: 9px;
+      background: #eff7f1;
+      color: var(--green-800);
+      font-size: 10px;
+      font-weight: 800;
+      transition: .2s;
+    }
+
+    .friend-action:hover {
+      background: var(--green-800);
+      color: #fff;
+      border-color: var(--green-800);
+    }
+
+    .friend-action.secondary {
+      border-color: #e8ece8;
+      background: #fff;
+      color: #7c8981;
+    }
+
+    .friend-action.secondary:hover {
+      border-color: #f0d9d5;
+      background: #fff4f2;
+      color: #c45e50;
+    }
+
+    .friend-action svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .request-card {
+      border-color: #eee5cb;
+      background: linear-gradient(145deg,#fff 70%,#fffaf0);
+    }
+
+    .request-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      color: #a17c19;
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .request-label i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--yellow);
+    }
+
+    .suggestion-card {
+      border-color: #e5ece7;
+    }
+
+    .suggestion-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 12px;
+      color: var(--green-700);
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .suggestion-label svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .empty-state {
+      display: none;
+      grid-column: 1 / -1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 190px;
+      padding: 25px;
+      border: 1px dashed #dce8df;
+      border-radius: 17px;
+      background: rgba(255,255,255,.65);
+      text-align: center;
+    }
+
+    .empty-state.show {
+      display: flex;
+    }
+
+    .empty-state-icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 12px;
+      border-radius: 15px;
+      background: #eaf5ed;
+      color: var(--green-800);
+    }
+
+    .empty-state-icon svg {
+      width: 23px;
+      height: 23px;
+    }
+
+    .empty-state strong {
+      font-family: Poppins, sans-serif;
+      font-size: 13px;
+    }
+
+    .empty-state p {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* RIGHT SIDEBAR */
+    .friends-rail-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .friends-rail-card h3 {
+      margin-top: 4px;
+      font-family: Poppins, sans-serif;
+      font-size: 16px;
+      letter-spacing: -.03em;
+    }
+
+    .friends-rail-card .eyebrow {
+      color: #8a988f;
+      font-size: 9px;
+    }
+
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 17px;
+    }
+
+    .activity-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .activity-avatar {
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 33px;
+      height: 33px;
+      border-radius: 11px;
+      background: #eaf5ed;
+      color: var(--green-800);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .activity-text {
+      min-width: 0;
+    }
+
+    .activity-text p {
+      color: #68766d;
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    .activity-text strong {
+      color: var(--ink);
+    }
+
+    .activity-text small {
+      display: block;
+      margin-top: 3px;
+      color: #a0aaa3;
+      font-size: 9px;
+    }
+
+    .friends-tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 15px;
+      border: 1px solid #f1e8c9;
+      border-radius: 15px;
+      background: #fffaf0;
+    }
+
+    .friends-tip-icon {
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 31px;
+      height: 31px;
+      border-radius: 10px;
+      background: var(--yellow);
+      color: #675113;
+    }
+
+    .friends-tip-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .friends-tip strong {
+      font-family: Poppins, sans-serif;
+      font-size: 11px;
+    }
+
+    .friends-tip p {
+      margin-top: 4px;
+      color: #827b64;
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    @media(max-width:1180px) {
+      .friends-hero-art { margin-right: 15px; }
+    }
+
+    @media(max-width:980px) {
+      .friends-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    }
+
+    @media(max-width:650px) {
+      .friends-hero {
+        min-height: 0;
+        padding: 23px 21px;
+      }
+
+      .friends-hero-art {
+        width: 80px;
+        height: 80px;
+        margin-right: 5px;
+      }
+
+      .friends-hero-art svg {
+        width: 39px;
+        height: 39px;
+      }
+
+      .friends-hero-art::after {
+        width: 25px;
+        height: 25px;
+        font-size: 13px;
+      }
+
+      .friends-stats { gap: 8px; }
+
+      .friend-stat {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px;
+      }
+
+      .stat-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+      }
+
+      .stat-info strong { font-size: 17px; }
+      .stat-info span { font-size: 9px; }
+
+      .friends-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .friends-search { width: 100%; }
+    }
+
+    @media(max-width:480px) {
+      .friends-hero {
+        align-items: flex-start;
+        padding: 21px 17px;
+      }
+
+      .friends-hero h1 { font-size: 29px; }
+      .friends-hero p { font-size: 11px; }
+      .friends-hero-art { display: none; }
+
+      .friends-stats { grid-template-columns: repeat(3,minmax(0,1fr)); }
+
+      .friends-grid { grid-template-columns: 1fr; }
+
+      .friend-card { padding: 15px; }
+
+      .friends-section-heading h2 { font-size: 18px; }
+
+      .friends-tab {
+        padding: 8px 11px;
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- SVG ICONS -->
+<svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24">
+    <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>
+  </symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24">
+    <path d="M12 22a7 7 0 0 0 7-7c0-4-3-6-4-10-2 2-3 4-3 6-2-1-3-3-3-5-2 2-4 5-4 9a7 7 0 0 0 7 7Z"/>
+    <path d="M12 22a3 3 0 0 0 3-3c0-2-1-3-2-4-1 2-4 3-4 5a3 3 0 0 0 3 2Z"/>
+  </symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24">
+    <path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.7 8.7 0 0 1-4-.9L3 20l1.4-4.1A7.3 7.3 0 0 1 4 12a7.5 7.5 0 0 1 8-7.5 7.5 7.5 0 0 1 8 7Z"/>
+  </symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24">
+    <path d="M6 3h8l4 4v14H6z"/>
+    <path d="M14 3v4h4M9 12h6M9 16h6"/>
+  </symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24">
+    <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/>
+  </symbol>
+  <symbol id="i-users" viewBox="0 0 24 24">
+    <circle cx="9" cy="8" r="3.5"/>
+    <path d="M2 20c0-3.7 3-6 7-6s7 2.3 7 6"/>
+    <path d="M16 5.2a3.2 3.2 0 0 1 0 6.2M18 14c2.5.5 4 2.3 4 5"/>
+  </symbol>
+  <symbol id="i-badge" viewBox="0 0 24 24">
+    <circle cx="12" cy="9" r="6"/>
+    <path d="m8 14-1 8 5-3 5 3-1-8M9.5 9l1.6 1.6L14.8 7"/>
+  </symbol>
+  <symbol id="i-search" viewBox="0 0 24 24">
+    <circle cx="10.8" cy="10.8" r="6.8"/>
+    <path d="m16 16 5 5"/>
+  </symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24">
+    <path d="m9 18 6-6-6-6"/>
+  </symbol>
+  <symbol id="i-user-plus" viewBox="0 0 24 24">
+    <path d="M15 20v-1a6 6 0 0 0-6-6H7a6 6 0 0 0-6 6v1"/>
+    <circle cx="8" cy="7" r="4"/>
+    <path d="M19 8v6M16 11h6"/>
+  </symbol>
+  <symbol id="i-user-check" viewBox="0 0 24 24">
+    <path d="M15 20v-1a6 6 0 0 0-6-6H7a6 6 0 0 0-6 6v1"/>
+    <circle cx="8" cy="7" r="4"/>
+    <path d="m16 11 2 2 4-4"/>
+  </symbol>
+  <symbol id="i-users-group" viewBox="0 0 24 24">
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+    <circle cx="9" cy="7" r="4"/>
+    <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+  </symbol>
+  <symbol id="i-message" viewBox="0 0 24 24">
+    <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 3.9a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/>
+  </symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24">
+    <path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3Z"/>
+    <path d="m19 14 1.2 2.8L23 18l-2.8 1.2L19 22l-1.2-2.8L15 18l2.8-1.2L19 14Z"/>
+  </symbol>
+</svg>
+
+<div class="app">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+
+    <a href="3.html" class="side-logo" aria-label="Acad X home">
+      <img src="images/Awaiting image descriptions.png" alt="Acad X">
+    </a>
+
+    <div class="sidebar-label">YOUR SPACE</div>
+
+    <nav class="side-nav" aria-label="Main navigation">
+      <a href="index.html">
+        <svg class="ic"><use href="#i-home"/></svg>
+        <span>Home</span>
+      </a>
+
+      <a href="explore (2).html">
+        <svg class="ic"><use href="#i-flame"/></svg>
+        <span>Explore</span>
+      </a>
+
+      <a href="forum-section2.html">
+        <svg class="ic"><use href="#i-chat"/></svg>
+        <span>Forums</span>
+      </a>
+
+      <a href="acadx-my-posts-redesign.html">
+        <svg class="ic"><use href="#i-doc"/></svg>
+        <span>My Posts</span>
+      </a>
+
+      <a href="notification2.html">
+        <svg class="ic"><use href="#i-bell"/></svg>
+        <span>Notifications</span>
+        <span class="nav-dot"></span>
+      </a>
+
+      <a href="friends.html" class="active" aria-current="page">
+        <svg class="ic"><use href="#i-users"/></svg>
+        <span>Friends</span>
+      </a>
+
+      <a href="badges-redesigned.html">
+        <svg class="ic"><use href="#i-badge"/></svg>
+        <span>Badges</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-note">
+      <span class="note-spark">✳</span>
+      <strong>Good ideas grow here.</strong>
+      <p>Share what you know. Learn something new.</p>
+    </div>
+
+    <img class="side-campus" src="assets/campus.jpg" alt="" loading="lazy">
+  </aside>
+
+
+  <!-- MAIN AREA -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+      <div class="topbar-greeting">
+        <span class="eyebrow">YOUR COMMUNITY, YOUR WAY</span>
+        <strong>Hey, Saitama <span aria-hidden="true">✦</span></strong>
+      </div>
+
+      <label class="search">
+        <svg class="ic"><use href="#i-search"/></svg>
+        <input type="search" placeholder="Search posts, topics, people..." aria-label="Search">
+        <kbd>/</kbd>
+      </label>
+
+      <div class="top-actions">
+
+        <a href="notification.html" class="bell" aria-label="Notifications">
+          <svg class="ic"><use href="#i-bell"/></svg>
+          <i></i>
+        </a>
+
+        <a href="#" class="user-chip">
+          <span class="avatar av-purple">S</span>
+          <span class="user-text">
+            <strong>Saitama</strong>
+            <small>Grade 9</small>
+          </span>
+          <svg class="ic chevron"><use href="#i-chevron"/></svg>
+        </a>
+
+      </div>
+    </header>
+
+
+    <!-- PAGE CONTENT -->
+    <div class="content">
+
+      <main class="friends-page">
+
+        <!-- HERO -->
+        <section class="friends-hero">
+
+          <div class="friends-hero-content">
+            <span class="friends-kicker">
+              <span></span>
+              YOUR PEOPLE, YOUR COMMUNITY
+            </span>
+
+            <h1>Find your <span>people.</span></h1>
+
+            <p>
+              Connect with classmates, meet new friends, and build your own
+              community here at AcadX.
+            </p>
+          </div>
+
+          <div class="friends-hero-art">
+            <svg class="ic"><use href="#i-users-group"/></svg>
+          </div>
+
+        </section>
+
+
+        <!-- FRIEND STATS -->
+        <section class="friends-stats">
+
+          <div class="friend-stat">
+            <div class="stat-icon">
+              <svg class="ic"><use href="#i-users-group"/></svg>
+            </div>
+            <div class="stat-info">
+              <strong id="friendCount">12</strong>
+              <span>Your Friends</span>
+            </div>
+          </div>
+
+          <div class="friend-stat">
+            <div class="stat-icon yellow">
+              <svg class="ic"><use href="#i-user-plus"/></svg>
+            </div>
+            <div class="stat-info">
+              <strong id="requestCount">3</strong>
+              <span>Friend Requests</span>
+            </div>
+          </div>
+
+          <div class="friend-stat">
+            <div class="stat-icon purple">
+              <svg class="ic"><use href="#i-sparkle"/></svg>
+            </div>
+            <div class="stat-info">
+              <strong>8</strong>
+              <span>Suggestions</span>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- FRIEND LIST -->
+        <section class="friends-section">
+
+          <div class="friends-section-heading">
+            <div>
+              <span class="eyebrow">STAY CONNECTED</span>
+              <h2>Your connections</h2>
+              <p>Manage your friends and discover new classmates.</p>
+            </div>
+
+            <label class="friends-search">
+              <svg class="ic"><use href="#i-search"/></svg>
+              <input type="search" id="friendSearch" placeholder="Search friends...">
+            </label>
+          </div>
+
+
+          <!-- FILTER TABS -->
+          <nav class="friends-tabs" aria-label="Friend categories">
+
+            <button class="friends-tab active" data-filter="all" type="button">
+              All Friends
+              <span class="tab-count">4</span>
+            </button>
+
+            <button class="friends-tab" data-filter="online" type="button">
+              Online
+              <span class="tab-count">2</span>
+            </button>
+
+            <button class="friends-tab" data-filter="requests" type="button">
+              Requests
+              <span class="tab-count">3</span>
+            </button>
+
+            <button class="friends-tab" data-filter="suggestions" type="button">
+              Suggestions
+            </button>
+
+          </nav>
+
+
+          <!-- FRIEND CARDS -->
+          <div class="friends-grid" id="friendsGrid">
+
+            <!-- FRIEND 1 -->
+            <article class="friend-card" data-category="all online" data-name="genos d">
+
+              <div class="friend-card-top">
+                <div class="friend-identity">
+                  <div class="friend-avatar green">
+                    G
+                    <span class="friend-online"></span>
+                  </div>
+
+                  <div class="friend-name">
+                    <strong>Genos D.</strong>
+                    <span>Grade 9 · Online now</span>
+                  </div>
+                </div>
+
+                <button class="friend-more" type="button" aria-label="More options">•••</button>
+              </div>
+
+              <p class="friend-bio">
+                Interested in coding, technology, and learning new things.
+              </p>
+
+              <div class="friend-meta">
+                <span>✦ Coding</span>
+                <span>Grade 9</span>
+              </div>
+
+              <div class="friend-card-actions">
+                <button class="friend-action message-btn" type="button">
+                  <svg class="ic"><use href="#i-message"/></svg>
+                  Message
+                </button>
+                <button class="friend-action secondary remove-btn" type="button">
+                  Remove
+                </button>
+              </div>
+
+            </article>
+
+
+            <!-- FRIEND 2 -->
+            <article class="friend-card" data-category="all online" data-name="tatsumaki">
+
+              <div class="friend-card-top">
+                <div class="friend-identity">
+                  <div class="friend-avatar purple">
+                    T
+                    <span class="friend-online"></span>
+                  </div>
+
+                  <div class="friend-name">
+                    <strong>Tatsumaki</strong>
+                    <span>Grade 10 · Online now</span>
+                  </div>
+                </div>
+
+                <button class="friend-more" type="button" aria-label="More options">•••</button>
+              </div>
+
+              <p class="friend-bio">
+                Loves art, school activities, and sharing creative ideas.
+              </p>
+
+              <div class="friend-meta">
+                <span>✦ Arts</span>
+                <span>Grade 10</span>
+              </div>
+
+              <div class="friend-card-actions">
+                <button class="friend-action message-btn" type="button">
+                  <svg class="ic"><use href="#i-message"/></svg>
+                  Message
+                </button>
+                <button class="friend-action secondary remove-btn" type="button">
+                  Remove
+                </button>
+              </div>
+
+            </article>
+
+
+            <!-- FRIEND 3 -->
+            <article class="friend-card" data-category="all" data-name="king">
+
+              <div class="friend-card-top">
+                <div class="friend-identity">
+                  <div class="friend-avatar orange">K</div>
+
+                  <div class="friend-name">
+                    <strong>King</strong>
+                    <span>Grade 9 · Offline</span>
+                  </div>
+                </div>
+
+                <button class="friend-more" type="button" aria-label="More options">•••</button>
+              </div>
+
+              <p class="friend-bio">
+                Always ready to help with assignments and school projects.
+              </p>
+
+              <div class="friend-meta">
+                <span>✦ Academics</span>
+                <span>Grade 9</span>
+              </div>
+
+              <div class="friend-card-actions">
+                <button class="friend-action message-btn" type="button">
+                  <svg class="ic"><use href="#i-message"/></svg>
+                  Message
+                </button>
+                <button class="friend-action secondary remove-btn" type="button">
+                  Remove
+                </button>
+              </div>
+
+            </article>
+
+
+            <!-- FRIEND 4 -->
+            <article class="friend-card" data-category="all" data-name="fubuki">
+
+              <div class="friend-card-top">
+                <div class="friend-identity">
+                  <div class="friend-avatar blue">F</div>
+
+                  <div class="friend-name">
+                    <strong>Fubuki</strong>
+                    <span>Grade 9 · Offline</span>
+                  </div>
+                </div>
+
+                <button class="friend-more" type="button" aria-label="More options">•••</button>
+              </div>
+
+              <p class="friend-bio">
+                Enjoys meeting new people and joining community discussions.
+              </p>
+
+              <div class="friend-meta">
+                <span>✦ Community</span>
+                <span>Grade 9</span>
+              </div>
+
+              <div class="friend-card-actions">
+                <button class="friend-action message-btn" type="button">
+                  <svg class="ic"><use href="#i-message"/></svg>
+                  Message
+                </button>
+                <button class="friend-action secondary remove-btn" type="button">
+                  Remove
+                </button>
+              </div>
+
+            </article>
+
+
+            <!-- REQUEST 1 -->
+            <article class="friend-card request-card" data-category="requests" data-name="speed o sound sonic">
+
+              <div class="friend-card-top">
+                <div class="friend-identity">
+                  <div class="friend-avatar pink">S</div>
+
+                  <div class="friend-name">
+                    <strong>Speed O' Sound Sonic</strong>
+                    <span>Grade 9</span>
+                  </div>
+                </div>
+              </div>
+
+              <span class="request-label"><i></i> SENT YOU A REQUEST</span>
+
+              <p class="friend-bio">
+                Wants to connect with you on AcadX.
+              </p>
+
+              <div class="friend-card-actions">
+                <button class="friend-action accept-btn" type="button">
+                  <svg class="ic"><use href="#i-user-check"/></svg>
+                  Accept
+                </button>
+                <button class="friend-action secondary decline-btn" type="button">
+                  Decline
+                </button>
+              </div>
+
+            </article>
+
+
+            <!-- REQUEST 2 -->
+            <article class="friend-card request-card" data-category="requests" data-name="mumen rider">
+
+              <div class="friend-card-top">
+                <div class="friend-identity">
+                  <div class="friend-avatar teal">M</div>
+
+                  <div class="friend-name">
+                    <strong>Mumen Rider</strong>
+                    <span>Grade 8</span>
+                  </div>
+                </div>
+              </div>
+
+              <span class="request-label"><i></i> SENT YOU A REQUEST</span>
+
+              <p class="friend-bio">
+                Wants to connect and share study tips with you.
+              </p>
+
+              <div class="friend-card-actions">
+                <button class="friend-action accept-btn" type="button">
+                  <svg class="ic"><use href="#i-user-check"/></svg>
+                  Accept
+                </button>
+                <button class="friend-action secondary decline-btn" type="button">
+                  Decline
+                </button>
+              </div>
+
+            </article>
+
+
+            <!-- REQUEST 3 -->
+            <article class="friend-card request-card" data-category="requests" data-name="bang">
+
+              <div class="friend-card-top">
+                <div class="friend-identity">
+                  <div class="friend-avatar blue">B</div>
+
+                  <div class="friend-name">
+                    <strong>Bang</strong>
+                    <span>Grade 10</span>
+                  </div>
+                </div>
+              </div>
+
+              <span class="request-label"><i></i> SENT YOU A REQUEST</span>
+
+              <p class="friend-bio">
+                Wants to become your friend.
+              </p>
+
+              <div class="friend-card-actions">
+                <button class="friend-action accept-btn" type="button">
+                  <svg class="ic"><use href="#i-user-check"/></svg>
+                  Accept
+                </button>
+                <button class="friend-action secondary decline-btn" type="button">
+                  Decline
+                </button>
+              </div>
+
+            </article>
+
+
+            <!-- SUGGESTION 1 -->
+            <article class="friend-card suggestion-card" data-category="suggestions" data-name="child emperor">
+
+              <div class="friend-card-top">
+                <div class="friend-identity">
+                  <div class="friend-avatar purple">C</div>
+
+                  <div class="friend-name">
+                    <strong>Child Emperor</strong>
+                    <span>Grade 9</span>
+                  </div>
+                </div>
+              </div>
+
+              <span class="suggestion-label">
+                <svg class="ic"><use href="#i-sparkle"/></svg>
+                SUGGESTED FOR YOU
+              </span>
+
+              <p class="friend-bio">
+                You share similar interests in technology and academics.
+              </p>
+
+              <div class="friend-meta">
+                <span>✦ Tech</span>
+                <span>Grade 9</span>
+              </div>
+
+              <div class="friend-card-actions">
+                <button class="friend-action add-btn" type="button">
+                  <svg class="ic"><use href="#i-user-plus"/></svg>
+                  Add Friend
+                </button>
+              </div>
+
+            </article>
+
+
+            <!-- SUGGESTION 2 -->
+            <article class="friend-card suggestion-card" data-category="suggestions" data-name="metal bat">
+
+              <div class="friend-card-top">
+                <div class="friend-identity">
+                  <div class="friend-avatar orange">M</div>
+
+                  <div class="friend-name">
+                    <strong>Metal Bat</strong>
+                    <span>Grade 9</span>
+                  </div>
+                </div>
+              </div>
+
+              <span class="suggestion-label">
+                <svg class="ic"><use href="#i-sparkle"/></svg>
+                SUGGESTED FOR YOU
+              </span>
+
+              <p class="friend-bio">
+                A classmate who enjoys games and school activities.
+              </p>
+
+              <div class="friend-meta">
+                <span>✦ Games</span>
+                <span>Grade 9</span>
+              </div>
+
+              <div class="friend-card-actions">
+                <button class="friend-action add-btn" type="button">
+                  <svg class="ic"><use href="#i-user-plus"/></svg>
+                  Add Friend
+                </button>
+              </div>
+
+            </article>
+
+
+            <!-- EMPTY STATE -->
+            <div class="empty-state" id="emptyState">
+              <div class="empty-state-icon">
+                <svg class="ic"><use href="#i-search"/></svg>
+              </div>
+              <strong>No results found</strong>
+              <p>Try another name or select a different category.</p>
+            </div>
+
+          </div>
+
+        </section>
+
+      </main>
+
+
+      <!-- RIGHT SIDEBAR -->
+      <aside class="rail">
+
+        <!-- PROFILE CARD -->
+        <section class="profile-card">
+
+          <div class="profile-topline">
+            <span>YOUR PROFILE</span>
+            <a href="#" class="edit" aria-label="Edit profile">
+              <svg class="ic"><use href="#i-users"/></svg>
+            </a>
+          </div>
+
+          <div class="profile-row">
+            <span class="avatar av-purple big">S</span>
+            <div>
+              <strong>Saitama</strong>
+              <span class="grade">Grade 9</span>
+            </div>
+          </div>
+
+          <p class="profile-tags">
+            <span>✦</span> Kalbo <b>·</b> Hero <b>·</b> Japan
+          </p>
+
+          <div class="profile-progress">
+            <div>
+              <span>Community starter</span>
+              <strong>2 / 5 badges</strong>
+            </div>
+            <span class="progress-track"><i></i></span>
+          </div>
+
+        </section>
+
+
+        <!-- RECENT ACTIVITY -->
+        <section class="friends-rail-card">
+
+          <span class="eyebrow">YOUR COMMUNITY</span>
+          <h3>Recent activity</h3>
+
+          <div class="activity-list">
+
+            <div class="activity-item">
+              <span class="activity-avatar">G</span>
+              <div class="activity-text">
+                <p><strong>Genos D.</strong> is now your friend.</p>
+                <small>Recently connected</small>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <span class="activity-avatar">T</span>
+              <div class="activity-text">
+                <p><strong>Tatsumaki</strong> is currently online.</p>
+                <small>Active now</small>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <span class="activity-avatar">F</span>
+              <div class="activity-text">
+                <p>You and <strong>Fubuki</strong> are connected.</p>
+                <small>Recently connected</small>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- FRIEND TIP -->
+        <section class="friends-tip">
+
+          <span class="friends-tip-icon">
+            <svg class="ic"><use href="#i-sparkle"/></svg>
+          </span>
+
+          <div>
+            <strong>Good connections start here.</strong>
+            <p>Say hello, share ideas, and make your AcadX community bigger.</p>
+          </div>
+
+        </section>
+
+      </aside>
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const tabs = document.querySelectorAll(".friends-tab");
+  const cards = document.querySelectorAll(".friend-card");
+  const searchInput = document.getElementById("friendSearch");
+  const emptyState = document.getElementById("emptyState");
+
+  let activeFilter = "all";
+
+  function updateFriends() {
+    const search = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const categories = card.dataset.category.split(" ");
+      const name = card.dataset.name.toLowerCase();
+
+      const matchesFilter =
+        activeFilter === "all"
+          ? categories.includes("all")
+          : categories.includes(activeFilter);
+
+      const matchesSearch = name.includes(search);
+
+      const show = matchesFilter && matchesSearch;
+
+      card.style.display = show ? "flex" : "none";
+
+      if (show) visibleCount++;
+    });
+
+    emptyState.classList.toggle("show", visibleCount === 0);
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(item => item.classList.remove("active"));
+
+      tab.classList.add("active");
+      activeFilter = tab.dataset.filter;
+
+      updateFriends();
+    });
+  });
+
+  searchInput.addEventListener("input", updateFriends);
+
+
+  // Accept friend requests
+  document.querySelectorAll(".accept-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".friend-card");
+      const name = card.querySelector(".friend-name strong").textContent;
+
+      card.remove();
+
+      const count = document.getElementById("friendCount");
+      count.textContent = Number(count.textContent) + 1;
+
+      const requests = document.getElementById("requestCount");
+      requests.textContent = Math.max(0, Number(requests.textContent) - 1);
+
+      alert(name + " has been added to your friends!");
+      updateFriends();
+    });
+  });
+
+
+  // Decline friend requests
+  document.querySelectorAll(".decline-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".friend-card");
+      card.remove();
+
+      const requests = document.getElementById("requestCount");
+      requests.textContent = Math.max(0, Number(requests.textContent) - 1);
+
+      updateFriends();
+    });
+  });
+
+
+  // Add friend from suggestions
+  document.querySelectorAll(".add-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".friend-card");
+      const name = card.querySelector(".friend-name strong").textContent;
+
+      button.innerHTML = "Request Sent";
+      button.disabled = true;
+      button.style.opacity = ".65";
+
+      alert("Friend request sent to " + name + "!");
+    });
+  });
+
+
+  // Remove friend
+  document.querySelectorAll(".remove-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".friend-card");
+      const name = card.querySelector(".friend-name strong").textContent;
+
+      if (confirm("Are you sure you want to remove " + name + " from your friends?")) {
+        card.remove();
+
+        const count = document.getElementById("friendCount");
+        count.textContent = Math.max(0, Number(count.textContent) - 1);
+
+        updateFriends();
+      }
+    });
+  });
+
+
+  // Message buttons
+  document.querySelectorAll(".message-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      const name = button.closest(".friend-card")
+        .querySelector(".friend-name strong").textContent;
+
+      alert("Messaging " + name + " will be available when your messaging page is connected.");
+    });
+  });
+
+
+  // Keyboard shortcut for search
+  document.addEventListener("keydown", event => {
+    if (event.key === "/" && !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) {
+      event.preventDefault();
+      searchInput.focus();
+    }
+  });
+
+  updateFriends();
+</script>
+
+</body>
+</html>

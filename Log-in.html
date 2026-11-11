@@ -1,0 +1,331 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#064c32">
+    <title>AcadX | Log In</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <!-- Background Decorations -->
+    <div class="deco deco-top" aria-hidden="true"></div>
+    <div class="deco deco-bottom" aria-hidden="true"></div>
+
+    <main class="page">
+
+        <section class="form-side">
+
+            <div class="form-card">
+
+                <!-- Header -->
+                <header class="form-header">
+
+                    <a href="index.html" class="brand">
+                        <span>Acad</span><span class="brand-x">X</span>
+                    </a>
+
+                    <h1>Welcome Back</h1>
+
+                    <p class="subtitle">
+                        Log in to connect, learn, and grow with your AcadX community!
+                    </p>
+
+                </header>
+
+                <form id="login-form" novalidate>
+
+                    <!-- Account Type -->
+                    <div class="field">
+                        <label for="account-type">Account Type</label>
+
+                        <div class="input-box">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5Z"/>
+                            </svg>
+
+                            <select id="account-type" name="account-type">
+                                <option value="student">Student</option>
+                                <option value="admin">Admin Center</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="field">
+                        <label for="email">Email Address</label>
+
+                        <div class="input-box">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm.4 2L12 12.2 19.6 7H4.4ZM20 9.2l-7.4 5.1a1.1 1.1 0 0 1-1.2 0L4 9.2V17h16V9.2Z"/>
+                            </svg>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Email address"
+                                autocomplete="username"
+                                required
+                            >
+                        </div>
+
+                        <p class="error-msg">Please enter a valid email address.</p>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="field">
+                        <label for="password">Password</label>
+
+                        <div class="input-box">
+
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M17 9h-1V7a4 4 0 0 0-8 0v2H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2Zm-7-2a2 2 0 0 1 4 0v2h-4V7Zm3 9.7V18h-2v-1.3a2 2 0 1 1 2 0Z"/>
+                            </svg>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="toggle-password"
+                                id="toggle-password"
+                                aria-label="Show password"
+                                aria-pressed="false"
+                            >
+                                <svg class="eye-open" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M12 5c5 0 9 4.5 10 7-1 2.5-5 7-10 7S3 14.5 2 12c1-2.5 5-7 10-7Zm0 2.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Z"/>
+                                </svg>
+
+                                <svg class="eye-closed" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="m3 2 19 19-1.4 1.4-3.2-3.2A11 11 0 0 1 12 21C6 21 2 14.5 1 12c.8-2 2.1-3.7 3.8-5L1.6 3.4 3 2Zm9 5a5 5 0 0 1 5 5c0 .6-.1 1.1-.3 1.6l-6.3-6.3A5 5 0 0 1 12 7Zm0-3c6 0 10 5.5 11 8-.5 1.3-1.4 2.7-2.6 4l-2.1-2.1c.4-.6.8-1.2 1.1-1.9-1.1-1.7-3.9-5-7.4-5-1 0-2 .2-2.9.6L7.5 5.1A11 11 0 0 1 12 4Z"/>
+                                </svg>
+                            </button>
+
+                        </div>
+
+                        <p class="error-msg">Please enter your password.</p>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="form-options">
+
+                        <label class="check">
+                            <input type="checkbox" name="remember" id="remember">
+                            <span>Remember me</span>
+                        </label>
+
+                        <a href="forgot-password.html">Forgot password?</a>
+
+                    </div>
+
+                    <!-- Login -->
+                    <button type="submit" class="btn btn-primary">
+                        Log In
+                    </button>
+
+                    <p class="login-message" id="login-message" role="alert"></p>
+
+                    <!-- Demo Accounts -->
+                    <div class="demo-section">
+
+                        <div class="divider">
+                            <span>Sample Accounts</span>
+                        </div>
+
+                        <div class="demo-account">
+
+                            <div class="demo-info">
+                                <div class="demo-avatar student-avatar">S</div>
+
+                                <div>
+                                    <h3>Student Account</h3>
+                                    <p>student@acadx.com</p>
+                                    <small>Password: Student123</small>
+                                </div>
+                            </div>
+
+                            <button type="button" class="use-btn"
+                                data-type="student"
+                                data-email="student@acadx.com"
+                                data-password="Student123">
+                                Use
+                            </button>
+
+                        </div>
+
+                        <div class="demo-account">
+
+                            <div class="demo-info">
+                                <div class="demo-avatar admin-avatar">A</div>
+
+                                <div>
+                                    <h3>Admin Center</h3>
+                                    <p>admin@acadx.com</p>
+                                    <small>Password: Admin123</small>
+                                </div>
+                            </div>
+
+                            <button type="button" class="use-btn"
+                                data-type="admin"
+                                data-email="admin@acadx.com"
+                                data-password="Admin123">
+                                Use
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Create Account -->
+                    <p class="switch-page">
+                        New to AcadX?
+                        <a href="create-account.html">Create an account</a>
+                    </p>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+        const form = document.getElementById("login-form");
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const accountType = document.getElementById("account-type");
+        const message = document.getElementById("login-message");
+        const toggle = document.getElementById("toggle-password");
+
+        const accounts = {
+            student: {
+                email: "student@acadx.com",
+                password: "Student123",
+                destination: "Dashboard-home.html"
+            },
+            admin: {
+                email: "admin@acadx.com",
+                password: "Admin123",
+                destination: "admin-dashboard.html"
+            }
+        };
+
+        // Show / Hide Password
+        toggle.addEventListener("click", function () {
+            const show = password.type === "password";
+
+            password.type = show ? "text" : "password";
+
+            toggle.classList.toggle("is-visible", show);
+            toggle.setAttribute("aria-pressed", show);
+            toggle.setAttribute(
+                "aria-label",
+                show ? "Hide password" : "Show password"
+            );
+        });
+
+        // Sample Account Autofill
+        document.querySelectorAll(".use-btn").forEach(button => {
+            button.addEventListener("click", function () {
+
+                accountType.value = this.dataset.type;
+                email.value = this.dataset.email;
+                password.value = this.dataset.password;
+
+                message.textContent = "";
+                message.className = "login-message";
+
+                document.querySelectorAll(".field").forEach(field => {
+                    field.classList.remove("invalid");
+                });
+
+            });
+        });
+
+        // Validation
+        function checkField(input) {
+            const valid = input.checkValidity();
+
+            input.closest(".field").classList.toggle("invalid", !valid);
+
+            return valid;
+        }
+
+        document.querySelectorAll(".field input").forEach(input => {
+
+            input.addEventListener("blur", () => checkField(input));
+
+            input.addEventListener("input", () => {
+                if (input.closest(".field").classList.contains("invalid")) {
+                    checkField(input);
+                }
+            });
+
+        });
+
+        // Login Submission
+        form.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            message.textContent = "";
+            message.className = "login-message";
+
+            const validEmail = checkField(email);
+            const validPassword = checkField(password);
+
+            if (!validEmail || !validPassword) {
+                message.textContent = "Please complete the required fields.";
+                message.classList.add("error");
+
+                if (!validEmail) email.focus();
+                else password.focus();
+
+                return;
+            }
+
+            const selected = accounts[accountType.value];
+
+            if (
+                email.value.trim().toLowerCase() === selected.email &&
+                password.value === selected.password
+            ) {
+
+                message.textContent = "Login successful! Redirecting...";
+                message.classList.add("success");
+
+                setTimeout(() => {
+                    window.location.href = selected.destination;
+                }, 800);
+
+            } else {
+
+                message.textContent =
+                    "Incorrect email or password. Please try again.";
+
+                message.classList.add("error");
+
+            }
+
+        });
+    </script>
+
+</body>
+</html>
+```
